@@ -1,0 +1,6 @@
+﻿@charset "utf-8";
+
+.page{text-align:center;margin:30px 0 30px 0;}
+.page a,.page span{display:inline-block; background:#dfdfdf;padding:7px 20px;font-size:13px;}
+.page .page-on{background:#50b9ce;color:#fff;}
+

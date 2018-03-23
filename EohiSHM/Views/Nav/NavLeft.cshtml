@@ -1,0 +1,30 @@
+﻿
+@{
+    Layout = null;
+}
+
+<div class="layui-side layui-bg-black">
+
+    <div class="layui-side-scroll">
+        <!-- 左侧导航区域（可配合layui已有的垂直导航） -->
+        <ul class="layui-nav layui-nav-tree" lay-filter="test">
+            @{
+                foreach (var item in ViewBag.menulist)
+                {
+                    <li class="layui-nav-item layui-nav-itemed">
+                        <a class="" href="@Url.Content(item.Menuurl)?menucode=@item.Menucode">@item.Menuname</a>
+                        @if (item.MenuChildren.Count > 0)
+                        {
+                            foreach (var tem in item.MenuChildren)
+                            {
+                                <dl class="layui-nav-child">
+                                    <dd><a href="@Url.Content(tem.Menuurl)?menucode=@tem.Menucode">@tem.Menuname</a></dd>
+                                </dl>
+                            }
+                        }
+                    </li>
+                }
+            }
+        </ul>
+    </div>
+</div>

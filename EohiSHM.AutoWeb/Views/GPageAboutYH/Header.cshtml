@@ -1,0 +1,23 @@
+﻿@{
+    Layout = null;
+}
+
+<div class="sub_banner">
+    <img src="~/images/sub_banner1.jpg" alt="" />
+    <div class="sub_txt">
+        <h1>关于优海</h1>
+        <h2>为您开启智能制造之门</h2>
+        <p>OPENS THE DOOR OF INTELLIGENT MANUFACTURING FOR YOU</p>
+    </div>
+</div>
+<div class="clearfix"></div>
+<div class="ins-navbox wrap">
+    <div class="inner">
+        <ul>
+            <li><a href="@Url.Content("~/SampleYH/Index")" @if (TempData["urltopsyp"] != null && TempData["urltopsyp"].Equals("urltopsyp")) { @Html.Raw("class=\"hover\"") }>优海简介</a></li>
+            <li><a href="@Url.Content("~/TeamYH/Index")" @if (TempData["urltopsyp"] != null && TempData["urltopsyp"].Equals("urltoptyhp")) { @Html.Raw("class=\"hover\"") }>优海团队</a></li>
+            <li><a href="@Url.Content("~/DevelopmentHistory/Index")" @if (TempData["urltopsyp"] != null && TempData["urltopsyp"].Equals("urltopdhp")) { @Html.Raw("class=\"hover\"") }>发展历程</a></li>
+            <li><a href="@Url.Content("~/QualificationHonor/Index")" @if (TempData["urltopsyp"] != null && TempData["urltopsyp"].Equals("urltopqhp")) { @Html.Raw("class=\"hover\"") }>资质荣誉</a></li>
+        </ul>
+    </div>
+</div>

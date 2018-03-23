@@ -1,0 +1,21 @@
+﻿@{
+    Layout = null;
+}
+
+<div class="sub_banner">
+    <img src="@Url.Content("~/images/sub_banner5.jpg")" alt="" />
+    <div class="sub_txt" style="color:#333;">
+        <h1>优海课堂</h1>
+        <h2>为您开启智能制造之门</h2>
+        <p>OPENS THE DOOR OF INTELLIGENT MANUFACTURING FOR YOU</p>
+    </div>
+</div>
+<div class="clearfix"></div>
+<div class="ins-navbox wrap">
+    <div class="inner">
+        <ul>
+            <li><a href="@Url.Content("~/TeachingVideo/Index")" @if (TempData["urltopsyp"] != null && TempData["urltopsyp"].Equals("urltoptvp")) { @Html.Raw("class=\"hover\"") }>教学视频</a></li>
+            <li><a href="@Url.Content("~/Microcurriculum/Index")"@if (TempData["urltopsyp"] != null && TempData["urltopsyp"].Equals("urltopmp")) { @Html.Raw("class=\"hover\"") }>微课程</a></li>
+        </ul>
+    </div>
+</div>

@@ -1,0 +1,39 @@
+﻿@model EohiSHM.AutoWeb.ViewModels.HomeModels
+@{
+    ViewBag.Title = "人才招聘";
+    Layout = "~/Views/Shared/_LayoutJoinUs.cshtml";
+}
+
+<div class="inner">
+    <div class="about about_team">
+        <h1>人才招聘</h1>
+        <div class="v5 recruit clearfix">
+            <table class="recruit_table">
+                <thead>
+                    <tr>
+                        <th>部门</th>
+                        <th>职位</th>
+                        <th>工作地点</th>
+                        <th>有效期</th>
+                        <th>招聘人数</th>
+                    </tr>
+                </thead>
+                <tbody>
+                    @foreach (var item in Model.Webrec)
+                    {
+                        <tr>
+                            <td>@item.Department</td>
+                            <td>@item.PositionJob</td>
+                            <td>@item.Cytyidtext</td>
+                            <td>@item.Cre_date</td>
+                            <td>@item.CountInt</td>
+                        </tr>
+                    }
+
+                   
+                </tbody>
+            </table>
+            <div class="about_img"><img src="@Url.Content("~/images/rczp_img.png")" alt="" /></div>
+        </div>
+    </div>
+</div>

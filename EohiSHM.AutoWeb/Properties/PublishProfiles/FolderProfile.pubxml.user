@@ -1,0 +1,949 @@
+<?xml version="1.0" encoding="utf-8"?>
+<!--
+此文件由 Web 项目的发布/打包过程使用。可以通过编辑此 MSBuild 文件
+自定义此过程的行为。为了解与此相关的更多内容，请访问 https://go.microsoft.com/fwlink/?LinkID=208121。 
+-->
+<Project ToolsVersion="4.0" xmlns="http://schemas.microsoft.com/developer/msbuild/2003">
+  <PropertyGroup>
+    <TimeStampOfAssociatedLegacyPublishXmlFile />
+    <_PublishTargetUrl>E:\SHMRelease\AutoWeb</_PublishTargetUrl>
+  </PropertyGroup>
+  <ItemGroup>
+    <File Include="bin/Antlr3.Runtime.dll">
+      <publishTime>03/14/2018 10:55:13</publishTime>
+    </File>
+    <File Include="bin/EntityFramework.dll">
+      <publishTime>10/23/2017 13:15:18</publishTime>
+    </File>
+    <File Include="bin/EntityFramework.SqlServer.dll">
+      <publishTime>10/23/2017 13:15:20</publishTime>
+    </File>
+    <File Include="bin/EohiSHM.AutoWeb.dll">
+      <publishTime>03/22/2018 16:16:26</publishTime>
+    </File>
+    <File Include="bin/EohiSHM.AutoWeb.pdb">
+      <publishTime>03/22/2018 16:16:26</publishTime>
+    </File>
+    <File Include="bin/EohiSHM.Common.dll">
+      <publishTime>03/22/2018 15:59:23</publishTime>
+    </File>
+    <File Include="bin/EohiSHM.Common.pdb">
+      <publishTime>03/22/2018 15:59:23</publishTime>
+    </File>
+    <File Include="bin/EohiSHM.EF.dll">
+      <publishTime>03/22/2018 15:59:23</publishTime>
+    </File>
+    <File Include="bin/EohiSHM.EF.dll.config">
+      <publishTime>03/14/2018 13:24:18</publishTime>
+    </File>
+    <File Include="bin/EohiSHM.EF.pdb">
+      <publishTime>03/22/2018 15:59:23</publishTime>
+    </File>
+    <File Include="bin/EohiSHM.Models.dll">
+      <publishTime>03/22/2018 15:59:22</publishTime>
+    </File>
+    <File Include="bin/EohiSHM.Models.pdb">
+      <publishTime>03/22/2018 15:59:22</publishTime>
+    </File>
+    <File Include="bin/LinqKit.dll">
+      <publishTime>04/06/2009 16:00:14</publishTime>
+    </File>
+    <File Include="bin/Microsoft.Web.Infrastructure.dll">
+      <publishTime>03/14/2018 10:55:10</publishTime>
+    </File>
+    <File Include="bin/Microsoft.Web.Mvc.FixedDisplayModes.dll">
+      <publishTime>03/14/2018 10:55:11</publishTime>
+    </File>
+    <File Include="bin/Newtonsoft.Json.dll">
+      <publishTime>03/14/2018 10:55:11</publishTime>
+    </File>
+    <File Include="bin/System.Net.Http.Formatting.dll">
+      <publishTime>03/14/2018 10:55:12</publishTime>
+    </File>
+    <File Include="bin/System.Web.Http.dll">
+      <publishTime>03/14/2018 10:55:12</publishTime>
+    </File>
+    <File Include="bin/System.Web.Http.WebHost.dll">
+      <publishTime>03/14/2018 10:55:12</publishTime>
+    </File>
+    <File Include="bin/System.Web.Mvc.dll">
+      <publishTime>03/14/2018 10:55:11</publishTime>
+    </File>
+    <File Include="bin/System.Web.Optimization.dll">
+      <publishTime>03/14/2018 10:55:13</publishTime>
+    </File>
+    <File Include="bin/System.Web.Providers.dll">
+      <publishTime>03/14/2018 10:55:12</publishTime>
+    </File>
+    <File Include="bin/System.Web.Razor.dll">
+      <publishTime>03/14/2018 10:55:11</publishTime>
+    </File>
+    <File Include="bin/System.Web.WebPages.Deployment.dll">
+      <publishTime>03/14/2018 10:55:11</publishTime>
+    </File>
+    <File Include="bin/System.Web.WebPages.dll">
+      <publishTime>03/14/2018 10:55:11</publishTime>
+    </File>
+    <File Include="bin/System.Web.WebPages.Razor.dll">
+      <publishTime>03/14/2018 10:55:11</publishTime>
+    </File>
+    <File Include="bin/WebGrease.dll">
+      <publishTime>03/14/2018 10:55:13</publishTime>
+    </File>
+    <File Include="bin/zh-Hans/EntityFramework.resources.dll">
+      <publishTime>10/23/2017 13:15:34</publishTime>
+    </File>
+    <File Include="bin/zh-Hans/EntityFramework.SqlServer.resources.dll">
+      <publishTime>10/23/2017 13:15:34</publishTime>
+    </File>
+    <File Include="bin/zh-Hans/System.Net.Http.Formatting.resources.dll">
+      <publishTime>08/08/2012 17:54:36</publishTime>
+    </File>
+    <File Include="bin/zh-Hans/System.Web.Http.resources.dll">
+      <publishTime>08/08/2012 17:54:40</publishTime>
+    </File>
+    <File Include="bin/zh-Hans/System.Web.Http.WebHost.resources.dll">
+      <publishTime>08/08/2012 17:54:30</publishTime>
+    </File>
+    <File Include="bin/zh-Hans/System.Web.Mvc.resources.dll">
+      <publishTime>08/08/2012 17:54:44</publishTime>
+    </File>
+    <File Include="bin/zh-Hans/System.Web.Optimization.resources.dll">
+      <publishTime>08/08/2012 17:54:38</publishTime>
+    </File>
+    <File Include="bin/zh-Hans/System.Web.Providers.resources.dll">
+      <publishTime>12/20/2012 12:08:16</publishTime>
+    </File>
+    <File Include="bin/zh-Hans/System.Web.Razor.resources.dll">
+      <publishTime>10/01/2012 15:24:08</publishTime>
+    </File>
+    <File Include="bin/zh-Hans/System.Web.WebPages.Deployment.resources.dll">
+      <publishTime>08/08/2012 17:54:34</publishTime>
+    </File>
+    <File Include="bin/zh-Hans/System.Web.WebPages.Razor.resources.dll">
+      <publishTime>08/08/2012 17:54:34</publishTime>
+    </File>
+    <File Include="bin/zh-Hans/System.Web.WebPages.resources.dll">
+      <publishTime>08/08/2012 17:54:34</publishTime>
+    </File>
+    <File Include="Content/css/base.css">
+      <publishTime>03/14/2018 10:16:51</publishTime>
+    </File>
+    <File Include="Content/css/index_v=2017.css">
+      <publishTime>03/20/2018 14:59:02</publishTime>
+    </File>
+    <File Include="Content/css/style.css">
+      <publishTime>03/22/2018 15:04:11</publishTime>
+    </File>
+    <File Include="Content/images/222.png">
+      <publishTime>03/06/2017 10:45:03</publishTime>
+    </File>
+    <File Include="Content/images/360wangpan_setup_6.6.0.1311.exe">
+      <publishTime>07/20/2017 21:52:52</publishTime>
+    </File>
+    <File Include="Content/images/about_img_1.png">
+      <publishTime>02/28/2017 20:22:27</publishTime>
+    </File>
+    <File Include="Content/images/aps.png">
+      <publishTime>03/27/2017 10:06:15</publishTime>
+    </File>
+    <File Include="Content/images/ax.png">
+      <publishTime>02/28/2017 16:49:42</publishTime>
+    </File>
+    <File Include="Content/images/banner1.jpg">
+      <publishTime>01/24/2017 13:15:22</publishTime>
+    </File>
+    <File Include="Content/images/banner2.jpg">
+      <publishTime>03/14/2018 10:35:11</publishTime>
+    </File>
+    <File Include="Content/images/banner3.jpg">
+      <publishTime>01/24/2017 13:22:21</publishTime>
+    </File>
+    <File Include="Content/images/banner4.jpg">
+      <publishTime>03/14/2018 10:28:55</publishTime>
+    </File>
+    <File Include="Content/images/banner5.jpg">
+      <publishTime>03/14/2018 10:25:40</publishTime>
+    </File>
+    <File Include="Content/images/bq.png">
+      <publishTime>02/28/2017 16:49:42</publishTime>
+    </File>
+    <File Include="Content/images/close.png">
+      <publishTime>03/06/2017 12:00:47</publishTime>
+    </File>
+    <File Include="Content/images/close_hover.png">
+      <publishTime>03/06/2017 12:01:47</publishTime>
+    </File>
+    <File Include="Content/images/comment_img.png">
+      <publishTime>03/06/2017 09:42:43</publishTime>
+    </File>
+    <File Include="Content/images/computer.png">
+      <publishTime>03/01/2017 13:10:40</publishTime>
+    </File>
+    <File Include="Content/images/dl.png">
+      <publishTime>02/28/2017 16:49:42</publishTime>
+    </File>
+    <File Include="Content/images/dxal_img.png">
+      <publishTime>02/21/2017 16:50:20</publishTime>
+    </File>
+    <File Include="Content/images/email.png">
+      <publishTime>03/27/2017 10:33:53</publishTime>
+    </File>
+    <File Include="Content/images/foot_logo.png">
+      <publishTime>02/21/2017 16:50:20</publishTime>
+    </File>
+    <File Include="Content/images/holip.png">
+      <publishTime>02/28/2017 16:49:42</publishTime>
+    </File>
+    <File Include="Content/images/ht.png">
+      <publishTime>02/28/2017 16:49:41</publishTime>
+    </File>
+    <File Include="Content/images/img1.jpg">
+      <publishTime>07/26/2017 10:32:47</publishTime>
+    </File>
+    <File Include="Content/images/img2.jpg">
+      <publishTime>07/13/2017 11:02:18</publishTime>
+    </File>
+    <File Include="Content/images/img3.jpg">
+      <publishTime>07/25/2017 13:31:41</publishTime>
+    </File>
+    <File Include="Content/images/img4.jpg">
+      <publishTime>07/25/2017 13:33:26</publishTime>
+    </File>
+    <File Include="Content/images/jxsp.png">
+      <publishTime>03/01/2017 17:47:00</publishTime>
+    </File>
+    <File Include="Content/images/left_control.png">
+      <publishTime>02/22/2017 14:54:14</publishTime>
+    </File>
+    <File Include="Content/images/little.png">
+      <publishTime>03/06/2017 10:09:26</publishTime>
+    </File>
+    <File Include="Content/images/login_logo.png">
+      <publishTime>03/06/2017 11:56:21</publishTime>
+    </File>
+    <File Include="Content/images/login_regist.png">
+      <publishTime>03/27/2017 10:22:26</publishTime>
+    </File>
+    <File Include="Content/images/logo.png">
+      <publishTime>02/21/2017 16:50:20</publishTime>
+    </File>
+    <File Include="Content/images/map.png">
+      <publishTime>03/01/2017 17:01:58</publishTime>
+    </File>
+    <File Include="Content/images/news_img.png">
+      <publishTime>02/22/2017 14:09:15</publishTime>
+    </File>
+    <File Include="Content/images/next.png">
+      <publishTime>07/25/2017 13:45:54</publishTime>
+    </File>
+    <File Include="Content/images/pause.png">
+      <publishTime>02/23/2017 15:43:09</publishTime>
+    </File>
+    <File Include="Content/images/play.png">
+      <publishTime>02/23/2017 15:31:57</publishTime>
+    </File>
+    <File Include="Content/images/prev.png">
+      <publishTime>07/25/2017 13:45:54</publishTime>
+    </File>
+    <File Include="Content/images/pwd.png">
+      <publishTime>03/06/2017 12:24:14</publishTime>
+    </File>
+    <File Include="Content/images/p_2.jpg">
+      <publishTime>12/28/2017 15:27:55</publishTime>
+    </File>
+    <File Include="Content/images/rcln_img.png">
+      <publishTime>03/01/2017 16:32:51</publishTime>
+    </File>
+    <File Include="Content/images/rczp_img.png">
+      <publishTime>03/01/2017 16:42:00</publishTime>
+    </File>
+    <File Include="Content/images/right_control.png">
+      <publishTime>02/22/2017 14:54:15</publishTime>
+    </File>
+    <File Include="Content/images/search.png">
+      <publishTime>02/21/2017 16:46:30</publishTime>
+    </File>
+    <File Include="Content/images/search_btn01.jpg">
+      <publishTime>03/27/2017 11:36:45</publishTime>
+    </File>
+    <File Include="Content/images/section_bg.jpg">
+      <publishTime>12/26/2014 09:48:18</publishTime>
+    </File>
+    <File Include="Content/images/smk.png">
+      <publishTime>02/28/2017 16:49:42</publishTime>
+    </File>
+    <File Include="Content/images/sprit_l.png">
+      <publishTime>02/22/2017 18:04:02</publishTime>
+    </File>
+    <File Include="Content/images/sprit_r.png">
+      <publishTime>02/22/2017 18:04:02</publishTime>
+    </File>
+    <File Include="Content/images/sub_banner1.jpg">
+      <publishTime>01/24/2017 13:08:32</publishTime>
+    </File>
+    <File Include="Content/images/sub_banner2.png">
+      <publishTime>03/01/2017 15:33:22</publishTime>
+    </File>
+    <File Include="Content/images/sub_banner3.jpg">
+      <publishTime>01/24/2017 13:08:45</publishTime>
+    </File>
+    <File Include="Content/images/sub_banner4.jpg">
+      <publishTime>01/24/2017 13:09:24</publishTime>
+    </File>
+    <File Include="Content/images/sub_banner5.jpg">
+      <publishTime>01/24/2017 13:09:07</publishTime>
+    </File>
+    <File Include="Content/images/tt.png">
+      <publishTime>02/28/2017 16:49:42</publishTime>
+    </File>
+    <File Include="Content/images/txt_1.png">
+      <publishTime>02/22/2017 14:47:57</publishTime>
+    </File>
+    <File Include="Content/images/user.png">
+      <publishTime>03/06/2017 12:20:16</publishTime>
+    </File>
+    <File Include="Content/images/V5_img.png">
+      <publishTime>03/01/2017 15:39:34</publishTime>
+    </File>
+    <File Include="Content/images/video.png">
+      <publishTime>02/22/2017 16:17:50</publishTime>
+    </File>
+    <File Include="Content/images/video_img2.png">
+      <publishTime>03/01/2017 17:58:09</publishTime>
+    </File>
+    <File Include="Content/images/wx.png">
+      <publishTime>02/28/2017 16:23:48</publishTime>
+    </File>
+    <File Include="Content/images/x.png">
+      <publishTime>03/27/2017 11:34:55</publishTime>
+    </File>
+    <File Include="Content/images/yzm.png">
+      <publishTime>03/27/2017 10:33:53</publishTime>
+    </File>
+    <File Include="Content/images/zan.png">
+      <publishTime>03/06/2017 09:42:24</publishTime>
+    </File>
+    <File Include="Content/images/znzz_img.png">
+      <publishTime>02/28/2017 14:53:34</publishTime>
+    </File>
+    <File Include="Content/images/zzry_bg.png">
+      <publishTime>03/01/2017 11:05:17</publishTime>
+    </File>
+    <File Include="Content/images/zzry_img.png">
+      <publishTime>03/01/2017 11:06:33</publishTime>
+    </File>
+    <File Include="Content/Site.css">
+      <publishTime>03/14/2018 10:57:29</publishTime>
+    </File>
+    <File Include="Content/themes/base/images/ui-bg_flat_0_aaaaaa_40x100.png">
+      <publishTime>03/14/2018 10:57:30</publishTime>
+    </File>
+    <File Include="Content/themes/base/images/ui-bg_flat_75_ffffff_40x100.png">
+      <publishTime>03/14/2018 10:57:30</publishTime>
+    </File>
+    <File Include="Content/themes/base/images/ui-bg_glass_55_fbf9ee_1x400.png">
+      <publishTime>03/14/2018 10:57:30</publishTime>
+    </File>
+    <File Include="Content/themes/base/images/ui-bg_glass_65_ffffff_1x400.png">
+      <publishTime>03/14/2018 10:57:30</publishTime>
+    </File>
+    <File Include="Content/themes/base/images/ui-bg_glass_75_dadada_1x400.png">
+      <publishTime>03/14/2018 10:57:30</publishTime>
+    </File>
+    <File Include="Content/themes/base/images/ui-bg_glass_75_e6e6e6_1x400.png">
+      <publishTime>03/14/2018 10:57:30</publishTime>
+    </File>
+    <File Include="Content/themes/base/images/ui-bg_glass_95_fef1ec_1x400.png">
+      <publishTime>03/14/2018 10:57:30</publishTime>
+    </File>
+    <File Include="Content/themes/base/images/ui-bg_highlight-soft_75_cccccc_1x100.png">
+      <publishTime>03/14/2018 10:57:30</publishTime>
+    </File>
+    <File Include="Content/themes/base/images/ui-icons_222222_256x240.png">
+      <publishTime>03/14/2018 10:57:30</publishTime>
+    </File>
+    <File Include="Content/themes/base/images/ui-icons_2e83ff_256x240.png">
+      <publishTime>03/14/2018 10:57:30</publishTime>
+    </File>
+    <File Include="Content/themes/base/images/ui-icons_454545_256x240.png">
+      <publishTime>03/14/2018 10:57:30</publishTime>
+    </File>
+    <File Include="Content/themes/base/images/ui-icons_888888_256x240.png">
+      <publishTime>03/14/2018 10:57:30</publishTime>
+    </File>
+    <File Include="Content/themes/base/images/ui-icons_cd0a0a_256x240.png">
+      <publishTime>03/14/2018 10:57:30</publishTime>
+    </File>
+    <File Include="Content/themes/base/jquery-ui.css">
+      <publishTime>03/14/2018 10:57:30</publishTime>
+    </File>
+    <File Include="Content/themes/base/jquery.ui.accordion.css">
+      <publishTime>03/14/2018 10:57:30</publishTime>
+    </File>
+    <File Include="Content/themes/base/jquery.ui.all.css">
+      <publishTime>03/14/2018 10:57:30</publishTime>
+    </File>
+    <File Include="Content/themes/base/jquery.ui.autocomplete.css">
+      <publishTime>03/14/2018 10:57:30</publishTime>
+    </File>
+    <File Include="Content/themes/base/jquery.ui.base.css">
+      <publishTime>03/14/2018 10:57:30</publishTime>
+    </File>
+    <File Include="Content/themes/base/jquery.ui.button.css">
+      <publishTime>03/14/2018 10:57:30</publishTime>
+    </File>
+    <File Include="Content/themes/base/jquery.ui.core.css">
+      <publishTime>03/14/2018 10:57:30</publishTime>
+    </File>
+    <File Include="Content/themes/base/jquery.ui.datepicker.css">
+      <publishTime>03/14/2018 10:57:30</publishTime>
+    </File>
+    <File Include="Content/themes/base/jquery.ui.dialog.css">
+      <publishTime>03/14/2018 10:57:30</publishTime>
+    </File>
+    <File Include="Content/themes/base/jquery.ui.progressbar.css">
+      <publishTime>03/14/2018 10:57:30</publishTime>
+    </File>
+    <File Include="Content/themes/base/jquery.ui.resizable.css">
+      <publishTime>03/14/2018 10:57:30</publishTime>
+    </File>
+    <File Include="Content/themes/base/jquery.ui.selectable.css">
+      <publishTime>03/14/2018 10:57:30</publishTime>
+    </File>
+    <File Include="Content/themes/base/jquery.ui.slider.css">
+      <publishTime>03/14/2018 10:57:30</publishTime>
+    </File>
+    <File Include="Content/themes/base/jquery.ui.tabs.css">
+      <publishTime>03/14/2018 10:57:30</publishTime>
+    </File>
+    <File Include="Content/themes/base/jquery.ui.theme.css">
+      <publishTime>03/14/2018 10:57:30</publishTime>
+    </File>
+    <File Include="Content/themes/base/minified/images/ui-bg_flat_0_aaaaaa_40x100.png">
+      <publishTime>03/14/2018 10:57:30</publishTime>
+    </File>
+    <File Include="Content/themes/base/minified/images/ui-bg_flat_75_ffffff_40x100.png">
+      <publishTime>03/14/2018 10:57:30</publishTime>
+    </File>
+    <File Include="Content/themes/base/minified/images/ui-bg_glass_55_fbf9ee_1x400.png">
+      <publishTime>03/14/2018 10:57:30</publishTime>
+    </File>
+    <File Include="Content/themes/base/minified/images/ui-bg_glass_65_ffffff_1x400.png">
+      <publishTime>03/14/2018 10:57:30</publishTime>
+    </File>
+    <File Include="Content/themes/base/minified/images/ui-bg_glass_75_dadada_1x400.png">
+      <publishTime>03/14/2018 10:57:30</publishTime>
+    </File>
+    <File Include="Content/themes/base/minified/images/ui-bg_glass_75_e6e6e6_1x400.png">
+      <publishTime>03/14/2018 10:57:30</publishTime>
+    </File>
+    <File Include="Content/themes/base/minified/images/ui-bg_glass_95_fef1ec_1x400.png">
+      <publishTime>03/14/2018 10:57:30</publishTime>
+    </File>
+    <File Include="Content/themes/base/minified/images/ui-bg_highlight-soft_75_cccccc_1x100.png">
+      <publishTime>03/14/2018 10:57:30</publishTime>
+    </File>
+    <File Include="Content/themes/base/minified/images/ui-icons_222222_256x240.png">
+      <publishTime>03/14/2018 10:57:30</publishTime>
+    </File>
+    <File Include="Content/themes/base/minified/images/ui-icons_2e83ff_256x240.png">
+      <publishTime>03/14/2018 10:57:30</publishTime>
+    </File>
+    <File Include="Content/themes/base/minified/images/ui-icons_454545_256x240.png">
+      <publishTime>03/14/2018 10:57:30</publishTime>
+    </File>
+    <File Include="Content/themes/base/minified/images/ui-icons_888888_256x240.png">
+      <publishTime>03/14/2018 10:57:30</publishTime>
+    </File>
+    <File Include="Content/themes/base/minified/images/ui-icons_cd0a0a_256x240.png">
+      <publishTime>03/14/2018 10:57:30</publishTime>
+    </File>
+    <File Include="Content/themes/base/minified/jquery-ui.min.css">
+      <publishTime>03/14/2018 10:57:30</publishTime>
+    </File>
+    <File Include="Content/themes/base/minified/jquery.ui.accordion.min.css">
+      <publishTime>03/14/2018 10:57:30</publishTime>
+    </File>
+    <File Include="Content/themes/base/minified/jquery.ui.autocomplete.min.css">
+      <publishTime>03/14/2018 10:57:30</publishTime>
+    </File>
+    <File Include="Content/themes/base/minified/jquery.ui.button.min.css">
+      <publishTime>03/14/2018 10:57:30</publishTime>
+    </File>
+    <File Include="Content/themes/base/minified/jquery.ui.core.min.css">
+      <publishTime>03/14/2018 10:57:30</publishTime>
+    </File>
+    <File Include="Content/themes/base/minified/jquery.ui.datepicker.min.css">
+      <publishTime>03/14/2018 10:57:30</publishTime>
+    </File>
+    <File Include="Content/themes/base/minified/jquery.ui.dialog.min.css">
+      <publishTime>03/14/2018 10:57:30</publishTime>
+    </File>
+    <File Include="Content/themes/base/minified/jquery.ui.progressbar.min.css">
+      <publishTime>03/14/2018 10:57:30</publishTime>
+    </File>
+    <File Include="Content/themes/base/minified/jquery.ui.resizable.min.css">
+      <publishTime>03/14/2018 10:57:30</publishTime>
+    </File>
+    <File Include="Content/themes/base/minified/jquery.ui.selectable.min.css">
+      <publishTime>03/14/2018 10:57:30</publishTime>
+    </File>
+    <File Include="Content/themes/base/minified/jquery.ui.slider.min.css">
+      <publishTime>03/14/2018 10:57:30</publishTime>
+    </File>
+    <File Include="Content/themes/base/minified/jquery.ui.tabs.min.css">
+      <publishTime>03/14/2018 10:57:30</publishTime>
+    </File>
+    <File Include="Content/themes/base/minified/jquery.ui.theme.min.css">
+      <publishTime>03/14/2018 10:57:30</publishTime>
+    </File>
+    <File Include="Global.asax">
+      <publishTime>03/14/2018 10:57:29</publishTime>
+    </File>
+    <File Include="images/222.png">
+      <publishTime>03/06/2017 10:45:03</publishTime>
+    </File>
+    <File Include="images/360wangpan_setup_6.6.0.1311.exe">
+      <publishTime>07/20/2017 21:52:52</publishTime>
+    </File>
+    <File Include="images/about_img_1.png">
+      <publishTime>02/28/2017 20:22:27</publishTime>
+    </File>
+    <File Include="images/aps.png">
+      <publishTime>03/27/2017 10:06:15</publishTime>
+    </File>
+    <File Include="images/ax.png">
+      <publishTime>02/28/2017 16:49:42</publishTime>
+    </File>
+    <File Include="images/banner1.jpg">
+      <publishTime>01/24/2017 13:15:22</publishTime>
+    </File>
+    <File Include="images/banner2.jpg">
+      <publishTime>03/14/2018 10:35:11</publishTime>
+    </File>
+    <File Include="images/banner3.jpg">
+      <publishTime>01/24/2017 13:22:21</publishTime>
+    </File>
+    <File Include="images/banner4.jpg">
+      <publishTime>03/14/2018 10:28:55</publishTime>
+    </File>
+    <File Include="images/banner5.jpg">
+      <publishTime>03/14/2018 10:25:40</publishTime>
+    </File>
+    <File Include="images/bq.png">
+      <publishTime>02/28/2017 16:49:42</publishTime>
+    </File>
+    <File Include="images/close.png">
+      <publishTime>03/06/2017 12:00:47</publishTime>
+    </File>
+    <File Include="images/close_hover.png">
+      <publishTime>03/06/2017 12:01:47</publishTime>
+    </File>
+    <File Include="images/comment_img.png">
+      <publishTime>03/06/2017 09:42:43</publishTime>
+    </File>
+    <File Include="images/computer.png">
+      <publishTime>03/01/2017 13:10:40</publishTime>
+    </File>
+    <File Include="images/dianshangpt.jpg">
+      <publishTime>03/22/2018 15:18:48</publishTime>
+    </File>
+    <File Include="images/dianshangpt.png">
+      <publishTime>03/22/2018 13:58:27</publishTime>
+    </File>
+    <File Include="images/dianxinganli.png">
+      <publishTime>03/22/2018 14:05:13</publishTime>
+    </File>
+    <File Include="images/dl.png">
+      <publishTime>02/28/2017 16:49:42</publishTime>
+    </File>
+    <File Include="images/dxal_img.png">
+      <publishTime>02/21/2017 16:50:20</publishTime>
+    </File>
+    <File Include="images/email.png">
+      <publishTime>03/27/2017 10:33:53</publishTime>
+    </File>
+    <File Include="images/EOS-APSsys.png">
+      <publishTime>03/22/2018 13:58:40</publishTime>
+    </File>
+    <File Include="images/EOS-CRMsys.png">
+      <publishTime>03/22/2018 13:58:35</publishTime>
+    </File>
+    <File Include="images/EOS-ERPsys.png">
+      <publishTime>03/22/2018 13:58:37</publishTime>
+    </File>
+    <File Include="images/EOS-MESsys.png">
+      <publishTime>03/22/2018 14:05:03</publishTime>
+    </File>
+    <File Include="images/foot_logo.png">
+      <publishTime>02/21/2017 16:50:20</publishTime>
+    </File>
+    <File Include="images/gxsjgl.jpg">
+      <publishTime>03/22/2018 15:24:50</publishTime>
+    </File>
+    <File Include="images/gxsjgl.png">
+      <publishTime>03/22/2018 14:05:08</publishTime>
+    </File>
+    <File Include="images/gzxn.jpg">
+      <publishTime>03/22/2018 15:22:56</publishTime>
+    </File>
+    <File Include="images/gzxn.png">
+      <publishTime>03/22/2018 13:58:33</publishTime>
+    </File>
+    <File Include="images/holip.png">
+      <publishTime>02/28/2017 16:49:42</publishTime>
+    </File>
+    <File Include="images/ht.png">
+      <publishTime>02/28/2017 16:49:41</publishTime>
+    </File>
+    <File Include="images/img1.jpg">
+      <publishTime>07/26/2017 10:32:47</publishTime>
+    </File>
+    <File Include="images/img2.jpg">
+      <publishTime>07/13/2017 11:02:18</publishTime>
+    </File>
+    <File Include="images/img3.jpg">
+      <publishTime>07/25/2017 13:31:41</publishTime>
+    </File>
+    <File Include="images/img4.jpg">
+      <publishTime>07/25/2017 13:33:26</publishTime>
+    </File>
+    <File Include="images/jxsp.png">
+      <publishTime>03/01/2017 17:47:00</publishTime>
+    </File>
+    <File Include="images/jysczxfw.jpg">
+      <publishTime>03/22/2018 15:28:26</publishTime>
+    </File>
+    <File Include="images/jysczxfw.png">
+      <publishTime>03/22/2018 13:58:25</publishTime>
+    </File>
+    <File Include="images/left_control.png">
+      <publishTime>02/22/2017 14:54:14</publishTime>
+    </File>
+    <File Include="images/little.png">
+      <publishTime>03/06/2017 10:09:26</publishTime>
+    </File>
+    <File Include="images/login_logo.png">
+      <publishTime>03/06/2017 11:56:21</publishTime>
+    </File>
+    <File Include="images/login_regist.png">
+      <publishTime>03/27/2017 10:22:26</publishTime>
+    </File>
+    <File Include="images/logo.png">
+      <publishTime>02/21/2017 16:50:20</publishTime>
+    </File>
+    <File Include="images/map.png">
+      <publishTime>03/01/2017 17:01:58</publishTime>
+    </File>
+    <File Include="images/news_img.png">
+      <publishTime>02/22/2017 14:09:15</publishTime>
+    </File>
+    <File Include="images/next.png">
+      <publishTime>07/25/2017 13:45:54</publishTime>
+    </File>
+    <File Include="images/pause.png">
+      <publishTime>02/23/2017 15:43:09</publishTime>
+    </File>
+    <File Include="images/play.png">
+      <publishTime>02/23/2017 15:31:57</publishTime>
+    </File>
+    <File Include="images/prev.png">
+      <publishTime>07/25/2017 13:45:54</publishTime>
+    </File>
+    <File Include="images/pwd.png">
+      <publishTime>03/06/2017 12:24:14</publishTime>
+    </File>
+    <File Include="images/p_2.jpg">
+      <publishTime>12/28/2017 15:27:55</publishTime>
+    </File>
+    <File Include="images/rcln_img.png">
+      <publishTime>03/01/2017 16:32:51</publishTime>
+    </File>
+    <File Include="images/rczp_img.png">
+      <publishTime>03/01/2017 16:42:00</publishTime>
+    </File>
+    <File Include="images/right_control.png">
+      <publishTime>02/22/2017 14:54:15</publishTime>
+    </File>
+    <File Include="images/sczyglxt.jpg">
+      <publishTime>03/22/2018 15:30:44</publishTime>
+    </File>
+    <File Include="images/sczyglxt.png">
+      <publishTime>03/22/2018 14:05:05</publishTime>
+    </File>
+    <File Include="images/search.png">
+      <publishTime>02/21/2017 16:46:30</publishTime>
+    </File>
+    <File Include="images/search_btn01.jpg">
+      <publishTime>03/27/2017 11:36:45</publishTime>
+    </File>
+    <File Include="images/section_bg.jpg">
+      <publishTime>12/26/2014 09:48:18</publishTime>
+    </File>
+    <File Include="images/smk.png">
+      <publishTime>02/28/2017 16:49:42</publishTime>
+    </File>
+    <File Include="images/sprit_l.png">
+      <publishTime>02/22/2017 18:04:02</publishTime>
+    </File>
+    <File Include="images/sprit_r.png">
+      <publishTime>02/22/2017 18:04:02</publishTime>
+    </File>
+    <File Include="images/sub_banner1.jpg">
+      <publishTime>01/24/2017 13:08:32</publishTime>
+    </File>
+    <File Include="images/sub_banner2.png">
+      <publishTime>03/01/2017 15:33:22</publishTime>
+    </File>
+    <File Include="images/sub_banner3.jpg">
+      <publishTime>01/24/2017 13:08:45</publishTime>
+    </File>
+    <File Include="images/sub_banner4.jpg">
+      <publishTime>01/24/2017 13:09:24</publishTime>
+    </File>
+    <File Include="images/sub_banner5.jpg">
+      <publishTime>01/24/2017 13:09:07</publishTime>
+    </File>
+    <File Include="images/tt.png">
+      <publishTime>02/28/2017 16:49:42</publishTime>
+    </File>
+    <File Include="images/txt_1.png">
+      <publishTime>02/22/2017 14:47:57</publishTime>
+    </File>
+    <File Include="images/user.png">
+      <publishTime>03/06/2017 12:20:16</publishTime>
+    </File>
+    <File Include="images/V5_img.png">
+      <publishTime>03/01/2017 15:39:34</publishTime>
+    </File>
+    <File Include="images/video.png">
+      <publishTime>02/22/2017 16:17:50</publishTime>
+    </File>
+    <File Include="images/video_img2.png">
+      <publishTime>03/01/2017 17:58:09</publishTime>
+    </File>
+    <File Include="images/wx.png">
+      <publishTime>02/28/2017 16:23:48</publishTime>
+    </File>
+    <File Include="images/x.png">
+      <publishTime>03/27/2017 11:34:55</publishTime>
+    </File>
+    <File Include="images/yzm.png">
+      <publishTime>03/27/2017 10:33:53</publishTime>
+    </File>
+    <File Include="images/zan.png">
+      <publishTime>03/06/2017 09:42:24</publishTime>
+    </File>
+    <File Include="images/zanhong.png">
+      <publishTime>03/21/2018 11:11:56</publishTime>
+    </File>
+    <File Include="images/znzz_img.png">
+      <publishTime>02/28/2017 14:53:34</publishTime>
+    </File>
+    <File Include="images/zzry_bg.png">
+      <publishTime>03/01/2017 11:05:17</publishTime>
+    </File>
+    <File Include="images/zzry_img.png">
+      <publishTime>03/01/2017 11:06:33</publishTime>
+    </File>
+    <File Include="packages.config">
+      <publishTime>03/14/2018 11:30:22</publishTime>
+    </File>
+    <File Include="resourse/birds.mp4">
+      <publishTime>06/16/2016 23:57:38</publishTime>
+    </File>
+    <File Include="Scripts/jquery-1.7.1.js">
+      <publishTime>02/28/2018 10:55:04</publishTime>
+    </File>
+    <File Include="Scripts/jquery-1.7.1.min.js">
+      <publishTime>02/28/2018 10:55:04</publishTime>
+    </File>
+    <File Include="Scripts/jquery-1.8.2.js">
+      <publishTime>03/14/2018 10:57:29</publishTime>
+    </File>
+    <File Include="Scripts/jquery-1.8.2.min.js">
+      <publishTime>03/14/2018 10:57:29</publishTime>
+    </File>
+    <File Include="Scripts/jquery-ui-1.8.24.js">
+      <publishTime>03/14/2018 10:57:30</publishTime>
+    </File>
+    <File Include="Scripts/jquery-ui-1.8.24.min.js">
+      <publishTime>03/14/2018 10:57:30</publishTime>
+    </File>
+    <File Include="Scripts/jquery.unobtrusive-ajax.js">
+      <publishTime>03/14/2018 10:57:30</publishTime>
+    </File>
+    <File Include="Scripts/jquery.unobtrusive-ajax.min.js">
+      <publishTime>03/14/2018 10:57:30</publishTime>
+    </File>
+    <File Include="Scripts/jquery.validate.js">
+      <publishTime>03/14/2018 10:57:30</publishTime>
+    </File>
+    <File Include="Scripts/jquery.validate.min.js">
+      <publishTime>03/14/2018 10:57:30</publishTime>
+    </File>
+    <File Include="Scripts/jquery.validate.unobtrusive.js">
+      <publishTime>03/14/2018 10:57:30</publishTime>
+    </File>
+    <File Include="Scripts/jquery.validate.unobtrusive.min.js">
+      <publishTime>03/14/2018 10:57:30</publishTime>
+    </File>
+    <File Include="Scripts/js/index.js">
+      <publishTime>02/28/2017 14:31:58</publishTime>
+    </File>
+    <File Include="Scripts/js/jquery-3.2.1.min.js">
+      <publishTime>07/24/2017 14:37:43</publishTime>
+    </File>
+    <File Include="Scripts/js/jquery.flexslider-min.js">
+      <publishTime>03/26/2014 10:44:26</publishTime>
+    </File>
+    <File Include="Scripts/knockout-2.2.0.debug.js">
+      <publishTime>03/14/2018 10:57:31</publishTime>
+    </File>
+    <File Include="Scripts/knockout-2.2.0.js">
+      <publishTime>03/14/2018 10:57:31</publishTime>
+    </File>
+    <File Include="Scripts/modernizr-2.6.2.js">
+      <publishTime>03/14/2018 10:57:30</publishTime>
+    </File>
+    <File Include="Scripts/_references.js">
+      <publishTime>03/14/2018 10:57:30</publishTime>
+    </File>
+    <File Include="Views/CompanyNews/Index.cshtml">
+      <publishTime>03/21/2018 15:33:51</publishTime>
+    </File>
+    <File Include="Views/ContactUs/Index.cshtml">
+      <publishTime>03/22/2018 10:55:15</publishTime>
+    </File>
+    <File Include="Views/DevelopmentHistory/Index.cshtml">
+      <publishTime>03/15/2018 10:34:46</publishTime>
+    </File>
+    <File Include="Views/ErrorHandle/Index.cshtml">
+      <publishTime>03/22/2018 10:25:41</publishTime>
+    </File>
+    <File Include="Views/GeneralPage/Footer.cshtml">
+      <publishTime>03/16/2018 13:29:33</publishTime>
+    </File>
+    <File Include="Views/GeneralPage/Header.cshtml">
+      <publishTime>03/16/2018 12:49:38</publishTime>
+    </File>
+    <File Include="Views/GeneralPage/LayoutLogin.cshtml">
+      <publishTime>03/19/2018 09:49:19</publishTime>
+    </File>
+    <File Include="Views/GeneralPage/NavHeader.cshtml">
+      <publishTime>03/16/2018 13:21:41</publishTime>
+    </File>
+    <File Include="Views/GeneralPage/TopHeader.cshtml">
+      <publishTime>03/20/2018 14:55:43</publishTime>
+    </File>
+    <File Include="Views/GJoinUs/Header.cshtml">
+      <publishTime>03/16/2018 10:56:58</publishTime>
+    </File>
+    <File Include="Views/GNewsInformation/Header.cshtml">
+      <publishTime>03/16/2018 10:52:27</publishTime>
+    </File>
+    <File Include="Views/GPageAboutYH/Footer.cshtml">
+      <publishTime>03/15/2018 09:34:33</publishTime>
+    </File>
+    <File Include="Views/GPageAboutYH/Header.cshtml">
+      <publishTime>03/16/2018 10:43:07</publishTime>
+    </File>
+    <File Include="Views/GProductService/Header.cshtml">
+      <publishTime>03/16/2018 14:58:10</publishTime>
+    </File>
+    <File Include="Views/GYouhaiClassroom/Header.cshtml">
+      <publishTime>03/16/2018 10:54:57</publishTime>
+    </File>
+    <File Include="Views/Home/Index.cshtml">
+      <publishTime>03/22/2018 14:42:48</publishTime>
+    </File>
+    <File Include="Views/IndustryInformation/Index.cshtml">
+      <publishTime>03/21/2018 15:36:20</publishTime>
+    </File>
+    <File Include="Views/Microcurriculum/Index.cshtml">
+      <publishTime>03/15/2018 16:57:27</publishTime>
+    </File>
+    <File Include="Views/MoreComments/Index.cshtml">
+      <publishTime>03/21/2018 13:18:03</publishTime>
+    </File>
+    <File Include="Views/NewsDetails/Index.cshtml">
+      <publishTime>03/22/2018 10:38:19</publishTime>
+    </File>
+    <File Include="Views/PlayRecord/Index.cshtml">
+      <publishTime>03/15/2018 17:20:57</publishTime>
+    </File>
+    <File Include="Views/QualificationHonor/Index.cshtml">
+      <publishTime>03/15/2018 11:02:14</publishTime>
+    </File>
+    <File Include="Views/SampleYH/Index.cshtml">
+      <publishTime>03/19/2018 11:31:41</publishTime>
+    </File>
+    <File Include="Views/Shared/Error.cshtml">
+      <publishTime>03/16/2018 11:24:59</publishTime>
+    </File>
+    <File Include="Views/Shared/_Layout.cshtml">
+      <publishTime>03/20/2018 10:27:51</publishTime>
+    </File>
+    <File Include="Views/Shared/_LayoutAboutYH.cshtml">
+      <publishTime>03/20/2018 10:27:51</publishTime>
+    </File>
+    <File Include="Views/Shared/_LayoutJoinUs.cshtml">
+      <publishTime>03/20/2018 10:27:51</publishTime>
+    </File>
+    <File Include="Views/Shared/_LayoutNewsInf.cshtml">
+      <publishTime>03/20/2018 10:27:51</publishTime>
+    </File>
+    <File Include="Views/Shared/_LayoutPlayRec.cshtml">
+      <publishTime>03/20/2018 10:27:51</publishTime>
+    </File>
+    <File Include="Views/Shared/_LayoutYHTeachRoom.cshtml">
+      <publishTime>03/20/2018 10:27:51</publishTime>
+    </File>
+    <File Include="Views/Shared/_LoyoutProductService.cshtml">
+      <publishTime>03/20/2018 10:27:44</publishTime>
+    </File>
+    <File Include="Views/Socialization/Index.cshtml">
+      <publishTime>03/21/2018 15:37:43</publishTime>
+    </File>
+    <File Include="Views/TalentIdea/Index.cshtml">
+      <publishTime>03/19/2018 11:33:29</publishTime>
+    </File>
+    <File Include="Views/TalentRecruitment/Index.cshtml">
+      <publishTime>03/21/2018 16:01:09</publishTime>
+    </File>
+    <File Include="Views/TeachingVideo/Index.cshtml">
+      <publishTime>03/20/2018 15:02:00</publishTime>
+    </File>
+    <File Include="Views/TeamYH/Index.cshtml">
+      <publishTime>03/16/2018 16:11:34</publishTime>
+    </File>
+    <File Include="Views/TypicalCaseDetails/Index.cshtml">
+      <publishTime>03/21/2018 16:59:36</publishTime>
+    </File>
+    <File Include="Views/V5TechnologyPlatform/Index.cshtml">
+      <publishTime>03/22/2018 15:10:17</publishTime>
+    </File>
+    <File Include="Views/V5TPPI/Index.cshtml">
+      <publishTime>03/22/2018 15:04:59</publishTime>
+    </File>
+    <File Include="Views/V5TYCDetails/Index.cshtml">
+      <publishTime>03/21/2018 17:13:42</publishTime>
+    </File>
+    <File Include="Views/V5TypicalCase/Index.cshtml">
+      <publishTime>03/16/2018 16:16:46</publishTime>
+    </File>
+    <File Include="Views/VideoDetails/Index.cshtml">
+      <publishTime>03/21/2018 15:24:54</publishTime>
+    </File>
+    <File Include="Views/Web.config">
+      <publishTime>03/14/2018 10:57:29</publishTime>
+    </File>
+    <File Include="Views/_ViewStart.cshtml">
+      <publishTime>03/14/2018 10:57:29</publishTime>
+    </File>
+    <File Include="Web.config">
+      <publishTime>03/21/2018 11:33:51</publishTime>
+    </File>
+  </ItemGroup>
+</Project>

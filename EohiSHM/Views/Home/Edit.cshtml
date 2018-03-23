@@ -1,0 +1,402 @@
+﻿@model EohiSHM.Models.Web_cms_article
+@{
+    ViewBag.Title = "编辑文章";
+    Layout = "~/Views/Shared/_LayouEdit.cshtml";
+}
+
+<blockquote class="layui-elem-quote layui-text" style="margin-top: 20px;">
+    编辑文章
+</blockquote>
+@*<fieldset class="layui-elem-field layui-field-title">
+        <legend>编辑文章</legend>
+    </fieldset>*@
+
+@*@using (Html.BeginForm("EditSave", "Article", FormMethod.Post, new { @class = "layui-form blog-manage-form" }))
+    {
+        @Html.AntiForgeryToken()
+        @Html.ValidationSummary(true)
+*@
+<form id="popupForm" action="" method="POST" enctype="multipart/form-data">
+
+    <input type="hidden" name="id" value="@Model.Id" />
+    <input type="hidden" name="pubdate" value="@Model.Pubdate" />
+    <input type="hidden" name="cre_date" value="@Model.Cre_date" />
+    <input type="hidden" name="TypeNoteEdit" id="TypeNoteEdit" value="@Model.TypeNote" />
+    <div class="layui-inline">
+        <label class="layui-form-label">文章类型：</label>
+        <div class="layui-input-inline">
+            <select name="TypeNote" lay-verify="required" lay-search="" id="selectarticletypeid" lay-filter="selectarticletype" onchange="selectcha(this);">
+                <option value="-1">请选择文章类型</option>
+                @foreach (var item in ViewBag.namesenum)
+                {
+                    <option value="@item.Key">@item.Value</option>
+                }
+            </select>
+        </div>
+    </div>
+    <div class="layui-form-item">
+        <label class="layui-form-label">创建人：</label>
+        <div class="layui-input-block">
+            <input type="text" name="Cre_man" lay-verify="" autocomplete="off" placeholder=@Model.Cre_man class="layui-input" value="@Model.Cre_man">
+        </div>
+    </div>
+    <div class="layui-form-item">
+        <label class="layui-form-label">修改人：</label>
+        <div class="layui-input-block">
+            <input type="text" name="Mod_man" lay-verify="" autocomplete="off" placeholder=@Model.Mod_man class="layui-input" value="@Model.Mod_man">
+        </div>
+    </div>
+
+    <div id="PeriodCoverhi" style="display:none">
+        <div class="layui-form-item">
+            <label class="layui-form-label">优海团队人员姓名：</label>
+            <div class="layui-input-block">
+                <input type="text" name="PeriodCover" lay-verify="" autocomplete="off" placeholder="优海团队人员姓名" class="layui-input" value="@Model.PeriodCover">
+            </div>
+        </div>
+        <div class="layui-form-item">
+            <label class="layui-form-label">优海团队人员人物简介：</label>
+            <div class="layui-input-block">
+                <input type="text" name="PeriodCoverSummary" lay-verify="" autocomplete="off" placeholder="优海团队人员人物简介" class="layui-input" value="@Model.PeriodCoverSummary">
+            </div>
+        </div>
+
+        <div class="layui-form-item layui-form-text">
+            <label class="layui-form-label">优海团队人员人物发展史及成就：</label>
+            <div class="layui-input-block">
+                <textarea id="LAY_demo_editoryhtemid" name="Phylogeny" placeholder="优海团队人员人物发展史及成就">@Html.Raw(Model.Phylogeny)</textarea>
+            </div>
+        </div>
+    </div>
+    <div id="titledivid">
+        <div class="layui-form-item" id="laiyuanid">
+            <label class="layui-form-label">来源</label>
+            <div class="layui-input-block">
+                <input type="text" name="Fromtype" lay-verify="fromtype" autocomplete="off" placeholder="这里输入文章的来源" class="layui-input" value="@Model.Fromtype" />
+            </div>
+        </div>
+        <div class="layui-form-item">
+            <label class="layui-form-label">标题</label>
+            <div class="layui-input-block">
+                <input type="text" name="Title" lay-verify="title" autocomplete="off" placeholder="这里输入文章的标题，注意啦，别做标题党了..." class="layui-input" value="@Model.Title" />
+            </div>
+        </div>
+
+        <div class="layui-form-item" id="subtitleid">
+            <label class="layui-form-label">副标题</label>
+            <div class="layui-input-block">
+                <input type="text" name="Subtitle" lay-verify="subtitle" autocomplete="off" placeholder="这里输入文章的副标题" class="layui-input" value="@Model.Subtitle" />
+            </div>
+        </div>
+    </div>
+    <div class="layui-form-item" id="ConductsTimeid">
+        <label class="layui-form-label">活动时间</label>
+        <div class="layui-input-block">
+            <input type="date" name="ConductsTime" lay-verify="" autocomplete="off" placeholder=@Model.ConductsTime class="layui-input" value="@Model.ConductsTime">
+        </div>
+    </div>
+    <div class="layui-form-item">
+        <label class="layui-form-label">是否显示：</label>
+        <div class="layui-input-block">
+            <input type="checkbox" {if 1=$switch}checked{/if} name="IsVisibel" value="1" lay-skin="switch" lay-text="显示|不显示" checked>
+        </div>
+    </div>
+    <div class="layui-upload">
+        <button type="button" class="layui-btn" id="updatepicture">预览图：</button>      <label id="imgsizeid"></label>
+        <div class="layui-upload-list">
+            <img class="layui-upload-img" name="Imageurl" id="demo1" src="@Url.Content(Model.Previewimg)">
+            <input type="hidden" name="Previewimg" lay-verify="previewimg" id="imagesrc" placeholder="这里输入文章预览图" autocomplete="off" class="layui-input" value="@Model.Previewimg" />
+            <p id="demoText"></p>
+        </div>
+    </div>
+
+    <div class="layui-form-item" id="subtitleidlink">
+        <label class="layui-form-label">超链接：</label>
+        <div class="layui-input-block">
+            <input type="text" name="Hyperlink" lay-verify="Hyperlink" autocomplete="off" placeholder="这里输入文章的超链接" class="layui-input" value="@Model.Hyperlink" />
+        </div>
+    </div>
+
+    <div class="layui-form-item layui-form-text" id="newidtxtid">
+        <label class="layui-form-label">新闻内容：</label>
+        <div class="layui-input-block">
+            <textarea id="LAY_demo_editor" name="Txt">@Html.Raw(Model.Txt)</textarea>
+        </div>
+    </div>
+    <div class="layui-form-item" id="newauthorid">
+        <label class="layui-form-label">作者</label>
+        <div class="layui-input-block">
+            <input type="text" name="author" lay-verify="Author" placeholder="这里输入文章作者哦..." autocomplete="off" class="layui-input" value="@Model.Author" />
+        </div>
+    </div>
+    <input type="hidden" id="hiddfile" name="VideoFile" value="@Model.VideoFile" />
+
+    <button type="button" class="layui-btn" id="test5"><i class="layui-icon"></i>上传视频</button>    <label id="labelidaddtime">  </label><label id="yudu"></label>
+  
+    <div class="layui-form-item" style="display:none">
+        <button class="layui-btn" lay-submit="" lay-filter="demo2" id="saveid">保存</button>
+    </div>
+</form>
+@*}*@
+
+@section Scripts {
+
+<script type="text/javascript">
+
+        function selectcha(obj) {
+                              //公司新闻
+            if (obj.value == 0) {
+                $('#ConductsTimeid').hide();
+                $('#subtitleidlink').hide();
+                $('#temyhmanid').hide();
+            } else {
+                $('#ConductsTimeid').show();
+                $('#subtitleidlink').show();
+                $('#temyhmanid').show();
+            }
+            //优海团队
+            if (obj.value == 9) {
+                $('#ConductsTimeid').hide();
+                $('#subtitleidlink').hide();
+                $('#updatafile').hide();
+                $('#titledivid').hide();
+                $('#PeriodCoverhi').show();
+                $('#newidtxtid').hide();
+                $('#newauthorid').hide();
+
+            } else {
+                $('#PeriodCoverhi').hide();
+                $('#ConductsTimeid').show();
+                $('#subtitleidlink').show();
+                $('#titledivid').show();
+                $('#updatafile').show();
+                $('#newidtxtid').show();
+                $('#newauthorid').show();
+            }
+            //优海课堂
+            if (obj.value == 4) {
+                $('#updatafile').show();
+            } else {
+                $('#updatafile').hide();
+            }
+
+
+
+        }
+    @*</script>
+    <script>*@
+
+
+
+           layui.use(['form', 'layedit', 'laydate', 'upload'], function () {
+                var form = layui.form
+                    , layer = layui.layer
+                   // , layedit = layui.layedit
+                    , laydate = layui.laydate
+                   , upload = layui.upload;
+
+                form.on('select(selectarticletype)', function (data) {
+                    console.log(data.elem); //得到select原始DOM对象
+                    console.log(data.value); //得到被选中的值
+                    console.log(data.othis); //得到美化后的DOM对象
+                });
+
+
+                //创建一个编辑器   新闻编辑
+              //  var editIndex = layedit.build('LAY_demo_editor');
+
+                var editor = new baidu.editor.ui.Editor();
+                editor.render("LAY_demo_editor");
+
+                    //编辑器 优海团队成就介绍
+                var editoryhtem = new baidu.editor.ui.Editor();
+                editor.render("LAY_demo_editoryhtemid");
+
+                var timer = null;
+                    //上传视频
+                upload.render({
+                    elem: '#test5'
+                    , url:'@Url.Content("~/Home/UqloadVideo")'
+                    , accept: 'video' //视频
+
+                    , before: function (obj) {
+                        var i = 1;
+                        timer = setInterval(function () {    //开启定时器
+                            ++i;
+                            $('#labelidaddtime').text("正在上传中" + i);
+                        }, 1000);
+                        //预读本地文件示例，不支持ie
+                        obj.preview(function (index, file, result) {
+                            $("#yudu").html("<span>名字：" + file.name + "</span>" + "<span>大小：" + file.size + "</span>");
+
+
+                            //Console.log("正在上传中");
+                            //$('#hiddfile').attr('src', result); //图片链接（base64）
+                            //   alert(file);
+                        });
+                    }
+
+                    , done: function (res) {
+                        if (res.code == 0) {
+                            //      alert(res.data.src);
+
+                            $('#labelidaddtime').text("上传成功");
+
+                            $('#hiddfile').val(res.data.src); //文件路径
+                            alert(res.msg);
+                            window.clearInterval(timer)  //清除定时器
+                        } else {
+                            alert(ret.msg);
+                        }
+                    }
+                });
+             //上传附件
+               //选完文件后不自动上传
+                upload.render({
+                    elem: '#test8'
+                    , url: '@Url.Content("~/Home/UqloadFileZip")'
+                    , accept: 'file'
+                    , auto: false
+                    //,multiple: true
+                    , bindAction: '#test9'
+                    , before: function (obj) {
+                        var i = 1;
+                        timer = setInterval(function () {    //开启定时器
+                            ++i;
+                            $('#labelidaddtime').text("正在上传中" + i);
+                        }, 1000);
+                        //预读本地文件示例，不支持ie
+                        obj.preview(function (index, file, result) {
+                            $("#yudu").html("<span>名字：" + file.name + "</span>" + "<span>大小：" + file.size + "</span>");
+
+
+                            //Console.log("正在上传中");
+                            //$('#hiddfile').attr('src', result); //图片链接（base64）
+                            //   alert(file);
+                        });
+                    }
+
+                     , done: function (res) {
+          if (res.code == 0) {
+          //      alert(res.data.src);
+
+              $('#labelidaddtime').text("上传成功");
+
+              $('#hiddfile').val(res.data.src); //文件路径
+              alert(res.msg);
+              window.clearInterval(timer)  //清除定时器
+          } else {
+              alert(ret.msg);
+          }
+    }
+                });
+
+        //保存处理
+        window.DataSave = function () {
+
+            if (!doCheck())
+                return;
+
+            var selectarticletypeid = $('#selectarticletypeid').val();
+            if (parseInt(selectarticletypeid) < 0) {
+                $('#TypeNoteEdit').val(selectarticletypeid);
+            }
+
+            //触发保存;
+            $("#saveid").trigger("click");
+
+        }
+
+        //检查
+        window.doCheck = function () {
+            //var linkname = $("#linkname").val();
+            //if (linkname == undefined || linkname == "") {
+            //    layerAlert("请填写连接名称");
+            //    return false;
+            //}
+            return true;
+        }
+
+
+
+
+
+
+                //普通图片上传
+                var uploadInst = upload.render({
+
+                    elem: '#updatepicture'
+                    , url: '@Url.Content("~/Home/UqloadFile")'
+                    , before: function (obj) {
+                        //预读本地文件示例，不支持ie
+                        obj.preview(function (index, file, result) {
+                            $('#demo1').attr('src', result); //图片链接（base64）
+                           // $('#imagesrc').val(file.name); //图片链接（base64）
+                        });
+                    }
+                    , done: function (res) {
+
+                        //如果上传失败
+                        if (res.code > 0) {
+                            return layer.msg('上传失败');
+                        }
+                        //alert(res.data.src);
+                        $('#imagesrc').val(res.data.src); //图片链接（base64）
+
+                        //上传成功
+                    }
+                    , error: function () {
+
+                        //演示失败状态，并实现重传
+                        var demoText = $('#demoText');
+                        demoText.html('<span style="color: #FF5722;">上传失败</span> <a class="layui-btn layui-btn-mini demo-reload">重试</a>');
+                        demoText.find('.demo-reload').on('click', function () {
+                            uploadInst.upload();
+                        });
+                    }
+                });
+                //表单提交;
+                $("#popupForm").on("submit", function () {
+
+                    $(this).ajaxSubmit({
+                        success: function (data) { // data 保存提交后返回的数据，一般为 json 数据
+                            if (data.success) {
+                                var index = parent.layer.getFrameIndex(window.name);
+                                parent.$("#iframe_handle_status").val('1');
+                                parent.layer.close(index);
+                            }
+                            else {
+                                //提示错误信息;
+                                //modalConfirm(data.access, "");
+                                //layerAlert(data.msg);
+                                layer.msg("错误！[" + data.msg + "]", {
+                                    icon: 1,
+                                    time: 3000 //2秒关闭（如果不配置，默认是3秒）
+                                }, function () { });
+                            }
+                        },
+                        error: function (xhr, status, err) {
+                            //alert("操作失败");
+                            layer.msg("错误！[" + status + "][" + err + "]", {
+                                icon: 1,
+                                time: 3000 //2秒关闭（如果不配置，默认是3秒）
+                            }, function () { });
+                        }
+                    });
+                    return false;
+                });
+
+
+
+
+
+
+
+
+        });
+
+</script>
+
+
+
+}

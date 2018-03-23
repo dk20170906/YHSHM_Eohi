@@ -1,0 +1,27 @@
+﻿<!DOCTYPE html>
+<html>
+@{Html.RenderAction("TopHeader", "GeneralPage");}
+<body>
+    <!--顶部-->
+    @{Html.RenderAction("NavHeader", "GeneralPage");}
+    <!--顶部-->
+    <div id="dowebok">
+        @{Html.RenderAction("Header", "GPageAboutYH");}
+
+
+        @RenderBody()
+
+        @{Html.RenderAction("Footer", "GeneralPage");}
+
+        <div id="gray"></div>
+        @{Html.RenderAction("LayoutLogin", "GeneralPage");}
+
+    </div>
+</body>
+
+
+@RenderSection("scripts", required: false)
+
+</html>
+
+

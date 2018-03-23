@@ -1,0 +1,22 @@
+﻿@{
+    Layout = null;
+}
+
+<div class="sub_banner">
+    <img src="@Url.Content("~/images/sub_banner3.jpg")" alt="" />
+    <div class="sub_txt" style="color:#333;">
+        <h1>新闻资讯</h1>
+        <h2>为您开启智能制造之门</h2>
+        <p>OPENS THE DOOR OF INTELLIGENT MANUFACTURING FOR YOU</p>
+    </div>
+</div>
+<div class="clearfix"></div>
+<div class="ins-navbox wrap">
+    <div class="inner">
+        <ul>
+            <li><a href="@Url.Content("~/CompanyNews/Index")"@if (TempData["urltopsyp"] != null && TempData["urltopsyp"].Equals("urltopcnp")) { @Html.Raw("class=\"hover\"") }>公司新闻</a></li>
+            <li><a href="@Url.Content("~/IndustryInformation/Index")"@if (TempData["urltopsyp"] != null && TempData["urltopsyp"].Equals("urltopiip")) { @Html.Raw("class=\"hover\"") }>行业资讯</a></li>
+            <li><a href="@Url.Content("~/Socialization/Index")"@if (TempData["urltopsyp"] != null && TempData["urltopsyp"].Equals("urltopsp")) { @Html.Raw("class=\"hover\"") }>社会活动</a></li>
+        </ul>
+    </div>
+</div>

@@ -1,0 +1,6 @@
+E:\EohiSHM\EohiSHM.Models\bin\Debug\EohiSHM.Models.dll
+E:\EohiSHM\EohiSHM.Models\bin\Debug\EohiSHM.Models.pdb
+E:\EohiSHM\EohiSHM.Models\obj\Debug\EohiSHM.Models.csprojResolveAssemblyReference.cache
+E:\EohiSHM\EohiSHM.Models\obj\Debug\EohiSHM.Models.csproj.CoreCompileInputs.cache
+E:\EohiSHM\EohiSHM.Models\obj\Debug\EohiSHM.Models.dll
+E:\EohiSHM\EohiSHM.Models\obj\Debug\EohiSHM.Models.pdb

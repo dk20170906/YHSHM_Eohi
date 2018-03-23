@@ -1,0 +1,30 @@
+﻿@model EohiSHM.Models.Web_cms_article
+@{
+    ViewBag.Title = "Index";
+    Layout = "~/Views/Shared/_LayoutAboutYH.cshtml";
+}
+
+@*<div class="inner">
+    <div class="about">
+        <h1>优海简介</h1>
+        <div class="about_con">
+            <div class="about_img"><img src="@Model.Previewimg" alt="" /></div>
+
+            <p>@Html.Raw(Model.Txt)</p>
+        </div>
+    </div>
+</div>*@
+
+<div class="inner">
+    <div class="about">
+        <h1>优海简介</h1>
+        <div class="about_con">
+            <div class="about_img"><img src="@Url.Content("~/images/about_img_1.png")" alt="" /></div>
+            <p>优海信息于2012年在杭州优时软件有限公司（前身：浙江大学灵峰科技开发公司）“机电事业部”基础上组建而成，集优时软件20多年的技术积累和浙江大学资源的优势，先后为100多家机电制造业提供了定制化管理与信息化服务。</p>
+            <p>优海信息是浙江省汽车工业技术创新协会会长单位，浙江省新能源汽车产业联盟副理事长和秘书长单位。优海信息本着“以需求为导向、满意为目标”的服务理念,专注于为汽车及零部件、金属加工、塑料加工、装备制造、电子电器等行业提供精益咨询、智能制造规划、数字化工厂建设、自动化生产线和智能装备改造升级、智能制造系统集成解决方案。</p>
+        </div>
+    </div>
+</div>
+
+
+

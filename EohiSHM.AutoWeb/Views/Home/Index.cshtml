@@ -1,0 +1,123 @@
+﻿@model EohiSHM.AutoWeb.ViewModels.HomeModels
+@{
+    ViewBag.Title = "首页";
+}
+<div class="section section1">
+    <div class="tableCell">
+        <div class="inner news">
+            <div class="new_l">
+                <h1><a href="@Url.Content("~/CompanyNews/Index")" target="_blank"> > 查看更多</a>新闻资讯 <span>NEWS</span></h1>
+                <ul>
+                    @foreach (var item in Model.NewsInformations)
+                    {
+                        <li>
+                            <div class="img"><img src="@item.Previewimg" alt="" /></div>
+                            <h2><a href="@Url.Content("~/NewsDetails/Index?id=")@item.Id" target="_blank">@item.Title</a></h2>
+                            <p>@Html.Raw(item.Txt)</p>
+                        </li>
+                    }
+                </ul>
+            </div>
+            <div class="new_r">
+                <h1>公司简介<span>ABOUT US</span></h1>
+                @*<div class="txt">
+                        @Html.Raw(Model.CompanyProfile);
+                    </div>*@
+
+                <div class="txt">
+                    <p>
+                        优海信息于2012年在杭州优时软件有限公司（前身：浙江大学灵峰科技开发公司）“机电事业部”基础上组建而成，集优时软件20多年的技术积累和浙江大学资源的优势，先后为100多家机电制造业提供了定制化管理与信息化服务。
+                    </p>
+                    <p>
+                        优海信息是浙江省汽车工业技术创新协会会长单位，浙江省新能源汽车产业联盟副理事长和秘书长单位。优海信息本着“以需求为导向、满意为目标”的服务理念,专注于为汽车及零部件、金属加工、塑料加工、装备制造、电子电器等行业提供精益咨询、智能制造规划、数字化工厂建设、自动化生产线和智能装备改造升级、智能制造系统集成解决方案。
+                    </p>
+                </div>
+                <a href="@Url.Content("~/SampleYH/Index")" target="_blank">  > 查看更多</a>
+            </div>
+        </div>
+    </div>
+</div>
+<div class="section section2">
+    <div class="inner classroom">
+        <h1><a href="@Url.Content("~/TeachingVideo/Index")" target="_blank"> > 查看更多</a>优海课堂 <span>CLASSROOM</span></h1>
+        <div class="p-wrap">
+            <a href="javascript:;" class="p-btn p-left"></a>
+            <div class="p-box" id="pBox">
+                <ul class="p-list cf">
+                    @foreach (var item in Model.YouhaiClassrooms)
+                {
+                    <li><a href="@Url.Content("~/VideoDetails/Index?id=")@item.Id">@item.Title</a></li>
+            }
+                </ul>
+            </div>
+            <a href="javascript:;" class="p-btn p-right"></a>
+        </div>
+        <div class="video">
+            <video src="@Model.YHVideoFirst.VideoFile" width="100%" height="100%" id="player">
+                <source src="@Model.YHVideoFirst.VideoFile" type="video/mp4" />
+                <source  src="@Model.YHVideoFirst.VideoFile" type="video/ogg">//若不支持MP4，则会继续ogv，webm
+                <source  src="@Model.YHVideoFirst.VideoFile" type="video/webm">
+            </video>
+                <div class="mask">
+                    <img id="ad" src="@Url.Content("~/images/video.png")">
+                    <img id="playOrPause" src="@Url.Content("~/images/play.png")">
+                </div>
+            </div>
+        </div>
+    </div>
+<div class="section section3">
+    <div class="inner">
+        <h1>产品服务 <span>PRODUCT SERVICE</span></h1>
+        <div class="znzz">
+            <ul>
+                <li class="one"><a href="@Url.Content("~/V5TPPI/Index?roofIndex=1")" target="_blank">电商平台</a></li>
+                <li class="two"><a href="@Url.Content("~/V5TPPI/Index?roofIndex=2")" target="_blank">精益生产咨询</a></li>
+                <li class="three"><a href="@Url.Content("~/V5TPPI/Index?roofIndex=3")" target="_blank">APS</a></li>
+                <li class="four"><a href="@Url.Content("~/V5TPPI/Index?roofIndex=4")" target="_blank">工厂场景<br>虚拟现实<br>系统</a></li>
+                <li class="five"><a href="@Url.Content("~/V5TPPI/Index?roofIndex=5")" target="_blank">MES</a></li>
+                <li class="six"><a href="@Url.Content("~/V5TPPI/Index?roofIndex=6")" target="_blank">CRM</a></li>
+                <li class="seven"><a href="@Url.Content("~/V5TPPI/Index?roofIndex=7")" target="_blank">工业数据<br>管理系统</a></li>
+                <li class="eight"><a href="@Url.Content("~/V5TPPI/Index?roofIndex=8")" target="_blank">ERP</a></li>
+                <li class="nine"><a href="@Url.Content("~/V5TPPI/Index?roofIndex=9")" target="_blank">生产作业<br>管理系统</a></li>
+            </ul>
+        </div>
+    </div>
+</div>
+<div class="section section4">
+    <div class="inner">
+        <h1><a href="@Url.Content("~/V5TypicalCase/Index")" target="_blank"> > 查看更多</a>典型案例 <span>TYPICAL CASE</span></h1>
+        <div id="effect" class="effects clearfix">
+            @foreach (var item in Model.TypicalCases)
+            {
+                <div class="img">
+                    <img src="@item.Previewimg" alt="">
+                    <div class="overlay">
+                        <p>@item.Title</p>
+                        <a href="@Url.Content("~/V5TYCDetails/Index?id=")@item.Id" target="_blank" class="close-overlay ">查看案例</a>
+                    </div>
+                </div>
+            }
+        </div>
+    </div>
+</div>
+@section scripts{
+    <script>
+        //视频播放效果
+        var player = document.getElementById("player");
+        var playOrPause = document.getElementById("playOrPause");
+        var mask = document.getElementsByClassName('mask');
+        playOrPause.onclick = function () {
+            player.play();	//播放影片
+            player.controls = true;
+            mask[0].style.display = 'none';
+        }
+        player.onpause = function () {
+            mask[0].style.display = 'inline-block';
+        }
+        player.onplay = function () {
+            mask[0].style.display = 'none';
+        }
+    </script>
+
+
+}

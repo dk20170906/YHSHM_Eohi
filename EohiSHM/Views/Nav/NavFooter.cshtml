@@ -1,0 +1,30 @@
+﻿@model EohiSHM.Models.ConfOption
+@{
+    Layout = null;
+}
+
+<div class="layui-footer">
+    <div class="layui-inline">
+        <p>
+            <img src="@Url.Content("~/Images/sign01.png")" alt="" />
+            @if (!String.IsNullOrEmpty(Model.Copyright))
+            {
+                <span>@Model.Copyright</span>
+            }
+            @if (!String.IsNullOrEmpty(Model.Ipccode))
+            {
+                <span>@Model.Ipccode;</span>
+            }
+            技术支持电话:
+            @if (!String.IsNullOrEmpty(Model.Tel))
+            {
+                <span>@Model.Tel</span>
+            }
+            <!-- 底部固定区域 -->
+            @*© 杭州优海信息系统有限公司 - 技术支持电话 - 0571-86071089*@
+            @*<span>2016 Goldfish 金鱼集团  All Right Reserved.</span>*@
+            @*<span> 浙ICP备09059188号</span>*@
+        </p>
+
+    </div>
+</div>

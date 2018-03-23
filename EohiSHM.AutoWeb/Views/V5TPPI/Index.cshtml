@@ -1,0 +1,27 @@
+﻿@model EohiSHM.Models.V5PlatformList
+@{
+    ViewBag.Title = "V5产品介绍";
+    Layout = "~/Views/Shared/_LoyoutProductService.cshtml";
+}
+
+<div class="inner">
+    <div class="about about_team">
+        @*<h1>@Model.Title</h1>*@
+        <div class="v5 clearfix">
+            @*<dl class="aps_intro">
+                    <dt>EOH-APS功能</dt>
+                    <dd>（1）有限资源约束条件下的效益最大化规划。</dd>
+                    <dd>（2）有限资源约束条件下的订单交期保障最大化规划。</dd>
+                    <dd>（3）即时规划能力。</dd>
+                    <dd>（4）烤炉能力/供需平衡的规划。</dd>
+                    <dd>（5）灵活调度功能。</dd>
+                    <dd>（6）非常规能力排除功能。</dd>
+                    <dd>（7）计划反馈能力和滚动处理能力</dd>
+                    <dd style="margin-top:15px;">APS系统能集成ERP和MRP的短期生产计划和调度系统，以提高工作效率</dd>
+                </dl>*@
+            <div class="APS">
+                <img  src="@Url.Content("~/images/"+Model.ImgName+"")" alt="" />
+            </div>
+        </div>
+    </div>
+</div>

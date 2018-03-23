@@ -1,0 +1,42 @@
+﻿@{
+    Layout = null;
+}
+<!--顶部-->
+<div class="dowebok-hd">
+    <!--头部-->
+    <div class="wrapHeader">
+        <div class="header">
+            <h1 class="logo"><a href="@Url.Content("~/Home/Index")"@if (TempData["urltopsy"] != null && TempData["urltopsy"].Equals("urltophome")) { @Html.Raw("class=\"cur\"") }><img src="@Url.Content("~/images/logo.png")"></a></h1>
+            <ul class="nav" id="navheaderid">
+                <li><a target="_blank" href="@Url.Content("~/Home/Index")"@if (TempData["urltopsy"] != null && TempData["urltopsy"].Equals("urltophome")) { @Html.Raw("class=\"cur\"") }>首页</a></li>
+                <li><a target="_blank" href="@Url.Content("~/SampleYH/Index")"@if (TempData["urltopsy"] != null && TempData["urltopsy"].Equals("urltopsy")) { @Html.Raw("class=\"cur\"") }>关于优海</a></li>
+                <li><a target="_blank" href="@Url.Content("~/V5TechnologyPlatform/Index" )"@if (TempData["urltopsy"] != null && TempData["urltopsy"].Equals("urltopv5tp")) { @Html.Raw("class=\"cur\"") }>产品服务</a></li>
+                <li><a target="_blank" href="@Url.Content("~/CompanyNews/Index")"@if (TempData["urltopsy"] != null && TempData["urltopsy"].Equals("urltopcn")) { @Html.Raw("class=\"cur\"") }>新闻资讯</a></li>
+                <li><a target="_blank" href="@Url.Content("~/TeachingVideo/Index")"@if (TempData["urltopsy"] != null && TempData["urltopsy"].Equals("urltoptv")) { @Html.Raw("class=\"cur\"") }>优海课堂</a></li>
+                <li><a target="_blank" href="@Url.Content("~/TalentIdea/Index")"@if (TempData["urltopsy"] != null && TempData["urltopsy"].Equals("urltopti")) { @Html.Raw("class=\"cur\"") }>加入我们</a></li>
+            </ul>
+        </div>
+        <div class="nav_right">
+            <ul>
+                <li style="color:#999;"> | </li>
+                <li><a href="javascript:void(0)" class="tc">登录</a></li>
+                <li><a href="#">注册</a></li>
+                <li><a href="@Url.Content("~/PlayRecord/Index")"@if (TempData["urltopsy"] != null && TempData["urltopsy"].Equals("urltoppr")) { @Html.Raw("class=\"cur\"") }>播放记录</a></li>
+            </ul>
+            <!--新加搜索代码-->
+            <div class="fr search-box search">
+                <a href="javascript:void(0)" class="butn"></a>
+                <div class="share-sub">
+                    <form action="" method="GET">
+                        <input class="fl tex" type="text" id="search" name="search" value="请输入关键词" onblur="if(!value){value=defaultValue;}" onfocus="if(value==defaultValue){value='';}">
+                        <input class="fl sub-btn" type="submit" value="">
+                    </form>
+                </div>
+            </div>
+        </div>
+    </div>
+    <!--头部结束-->
+</div>
+<!--顶部-->
+
+

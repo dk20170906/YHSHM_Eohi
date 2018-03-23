@@ -1,0 +1,102 @@
+﻿@model EohiSHM.AutoWeb.ViewModels.HomeModels
+@{
+    ViewBag.Title = "教学视频";
+    Layout = "~/Views/Shared/_LayoutYHTeachRoom.cshtml";
+}
+<div>
+    <div class="inner">
+        <div class="record room">
+            <div class="video">
+                <video src="@Model.YHVideoFirst.VideoFile" width="600" height="516" id="player">
+                    <source src="@Model.YHVideoFirst.VideoFile" type="video/mp4" />
+                    <source src="@Model.YHVideoFirst.VideoFile" type="video/ogg">//若不支持MP4，则会继续ogv，webm
+                    <source src="@Model.YHVideoFirst.VideoFile" type="video/webm">
+                </video>
+                <div class="mask">
+                    <img id="ad" src="@Url.Content("~/images/jxsp.png")">
+                    <img id="playOrPause" src="@Url.Content("~/images/play.png")">
+                    <div class="jxsp_txt">@Model.YHVideoFirst.Title</div>
+                </div>
+            </div>
+            <ul>
+                @foreach (var item in Model.YouhaiClassrooms)
+                {
+                    <li>
+                        <h2><a href="@Url.Content("~/VideoDetails/Index?id=")@item.Id"> > 播放</a>@item.Title</h2>
+                        <div class="record_intro">
+                            <span>讲师：@item.Author</span>
+                            <span>@item.Cre_Time</span>
+                        </div>
+                        <p>@item.Subtitle</p>
+                    </li>
+                }
+
+
+            </ul>
+        </div>
+    </div>
+    <div class="page">
+
+
+        <a class="page" id="page_1" href="@Url.Content("~/TeachingVideo/Index?pageindex=1")">1</a>
+
+        @if (ViewBag.tatalrows > 0)
+        {
+            int pageindexMax = (int)Math.Ceiling((float)ViewBag.tatalrows / 3);
+            for (int i = 2; i <= pageindexMax; i++)
+            {
+                <a class="page" id="page_@i" href="@Url.Content("~/TeachingVideo/Index?pageindex=")@i" onclick="pagination(@i)">@i</a>
+            }
+            <a class="mod_page_lk" id="nextpageindex" href="@Url.Content("~/TeachingVideo/Index?pageindex=2")">下一页</a>
+            <a class="mod_page_last" href="@Url.Content("~/TeachingVideo/Index?pageindex=")@pageindexMax">末页</a>
+        }
+
+    </div>
+</div>
+@section scripts{
+    <script>
+        //视频播放效果
+        var player = document.getElementById("player");
+        var playOrPause = document.getElementById("playOrPause");
+        var mask = document.getElementsByClassName('mask');
+        playOrPause.onclick = function () {
+            player.play();	//播放影片
+            player.controls = true;
+            mask[0].style.display = 'none';
+        }
+        player.onpause = function () {
+            mask[0].style.display = 'inline-block';
+        }
+        player.onplay = function () {
+            mask[0].style.display = 'none';
+        }
+    </script>
+    <script type="text/javascript">
+        $(function () {
+            //从url中获取当前胡pageindex;
+            //$(obj).addClass('page-on').siblings().removeClass('page-on');
+            var index = getQueryString("pageindex");
+            if (index == undefined || index == null)
+                $("#page_1").addClass("page-on");
+            //动态设置页码a标签样式 css
+            $("#page_" + index).addClass("page-on");
+
+        })
+        //从url地址获取参数值;
+        function getQueryString(name) {
+            var reg = new RegExp("(^|&)" + name + "=([^&]*)(&|$)", "i");
+            var r = window.location.search.substr(1).match(reg);
+            if (r != null) return unescape(r[2]); return null;
+        }
+        $('#nextpageindex').click(function () {
+                        var index = getQueryString("pageindex");
+            if (index == undefined || index == null)
+                index = 0;
+            index++;
+            if (index >=@ViewBag.tatalrows/3) {
+                index= Math.ceil(@ViewBag.tatalrows/ 3);
+            }
+            $('#nextpageindex').attr('href', "@Url.Content("~/TeachingVideo/Index?pageindex=")" + index);
+        });
+    </script>
+}

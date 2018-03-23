@@ -1,0 +1,188 @@
+﻿@model EohiSHM.Models.Web_Recruit
+@{
+    ViewBag.Title = "人才招聘编辑";
+    Layout = "~/Views/Shared/_LayouEdit.cshtml";
+}
+
+<blockquote class="layui-elem-quote layui-text" style="margin-top: 20px;">
+    人才招聘编辑
+</blockquote>
+<form id="popupForm" class="layui-form" action="" method="POST" enctype="multipart/form-data">
+
+    <input type="hidden" name="id" value="@Model.Id" />
+    <input type="hidden" name="cre_date" value="@Model.Cre_Time" />
+    <div class="layui-form-item">
+        <label class="layui-form-label">部门：</label>
+        <div class="layui-input-block">
+            <input type="text" name="Department" lay-verify="required" autocomplete="off" placeholder=@Model.Department class="layui-input" value="@Model.Department">
+        </div>
+    </div>
+    <div class="layui-form-item">
+        <label class="layui-form-label">职位：</label>
+        <div class="layui-input-block">
+            <input type="text" name="PositionJob" lay-verify="required" autocomplete="off" placeholder=@Model.PositionJob class="layui-input" value="@Model.PositionJob">
+        </div>
+    </div>
+
+
+    <div class="layui-form-item">
+        <label class="layui-form-label">工作地点：</label>
+        <div class="layui-input-inline">
+            <select name="provid" id="provid" lay-filter="provid">
+                <option value="">请选择省</option>
+            </select>
+        </div>
+        <div class="layui-input-inline">
+            <select name="cityid" id="cityid" lay-filter="cityid">
+                <option value="">请选择市</option>
+            </select>
+        </div>
+        <div class="layui-input-inline">
+            <select name="areaid" id="areaid" lay-filter="areaid">
+                <option value="">请选择县/区</option>
+            </select>
+        </div>
+    </div>
+
+
+
+
+
+    <div class="layui-form-item">
+        <label class="layui-form-label">有效期：</label>
+        <div class="layui-input-block">
+            <input type="text" name="Valid_Time" id="Valid_Time" lay-verify="date" placeholder="yyyy-MM-dd" autocomplete="off" class="layui-input" value="@Model.Valid_Time">
+        </div>
+    </div>
+
+    <div class="layui-form-item">
+        <label class="layui-form-label">招聘人数：</label>
+        <div class="layui-input-block">
+            <input type="text" name="CountInt" lay-verify="required" autocomplete="off" placeholder=@Model.CountInt class="layui-input" value="@Model.CountInt">
+        </div>
+    </div>
+
+
+    <div class="layui-form-item">
+        <label class="layui-form-label">是否显示：</label>
+        <div class="layui-input-block">
+            <input type="checkbox" {if 1=$switch}checked{/if} name="IsVisibel" value="1" lay-skin="switch" lay-text="显示|不显示" checked>
+        </div>
+    </div>
+    <div class="layui-form-item">
+        <label class="layui-form-label">备注：</label>
+        <div class="layui-input-block">
+            <input type="text" name="Remarks" lay-verify="required" autocomplete="off" placeholder=@Model.Remarks class="layui-input" value="@Model.Remarks">
+        </div>
+    </div>
+    <input type="hidden" name="Providtext" id="providtext" value="" />
+    <input type="hidden" name="Cytyidtext" id="cytyidtext" value="" />
+    <input type="hidden" name="Areaidtext" id="areaidtext" value="" />
+    <input type="hidden" name="AreaidtextLong" id="areaidtextLong" value="" />
+    <div class="layui-form-item" style="display:none">
+        <button class="layui-btn" lay-submit="" lay-filter="demo2" id="saveid">保存</button>
+    </div>
+</form>
+
+
+
+
+@section Scripts {
+
+    <script type="text/javascript">
+
+
+        layui.use(['form', 'layedit', 'laydate', 'upload'], function () {
+            var form = layui.form
+                , layer = layui.layer
+                // , layedit = layui.layedit
+                , laydate = layui.laydate
+                , upload = layui.upload;
+
+
+            //日期
+            laydate.render({
+                elem: '#Valid_Time'
+            });
+            laydate.render({
+                elem: '#date1'
+            });
+            //表单提交;
+            $("#popupForm").on("submit", function () {
+
+                $(this).ajaxSubmit({
+                    success: function (data) { // data 保存提交后返回的数据，一般为 json 数据
+                        if (data.success) {
+                            var index = parent.layer.getFrameIndex(window.name);
+                            parent.$("#iframe_handle_status").val('1');
+                            parent.layer.close(index);
+                        }
+                        else {
+                            //提示错误信息;
+                            //modalConfirm(data.access, "");
+                            //layerAlert(data.msg);
+                            layer.msg("错误！[" + data.msg + "]", {
+                                icon: 1,
+                                time: 3000 //2秒关闭（如果不配置，默认是3秒）
+                            }, function () { });
+                        }
+                    },
+                    error: function (xhr, status, err) {
+                        //alert("操作失败");
+                        layer.msg("错误！[" + status + "][" + err + "]", {
+                            icon: 1,
+                            time: 3000 //2秒关闭（如果不配置，默认是3秒）
+                        }, function () { });
+                    }
+                });
+                return false;
+            });
+
+            //保存处理
+            window.DataSave = function () {
+
+                var procidtxt = $("#provid").find("option:selected").text();//获取的是天津市
+                var cityidtxt = $("#cityid").find("option:selected").text();//获取的是天津市
+                var areaidtxt = $("#areaid").find("option:selected").text();//获取的是天津市
+
+                $("#providtext").val(procidtxt);
+                $("#cytyidtext").val(cityidtxt);
+                $("#areaidtext").val( areaidtxt);
+                $("#areaidtextLong").val(procidtxt +" "+ cityidtxt +" "+ areaidtxt);
+
+                if (!doCheck())
+                    return;
+
+                //触发保存;
+                $("#saveid").trigger("click");
+
+            }
+
+            //检查
+            window.doCheck = function () {
+                //var linkname = $("#linkname").val();
+                //if (linkname == undefined || linkname == "") {
+                //    layerAlert("请填写连接名称");
+                //    return false;
+                //}
+                return true;
+            }
+
+
+
+
+
+        });
+
+
+
+
+
+    </script>
+
+
+
+
+
+
+}

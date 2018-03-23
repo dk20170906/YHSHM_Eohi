@@ -1,0 +1,209 @@
+﻿@model EohiSHM.AutoWeb.ViewModels.HomeModels
+@{
+    ViewBag.Title = "资讯详情";
+    Layout = "~/Views/Shared/_LayoutNewsInf.cshtml";
+}
+
+<div class="inner class_details">
+    <div class="article">
+        <h3>@Model.NewsDetails.Title</h3>
+        <div class="subtitle">
+            <a href="#">分享</a>
+            <div class="bdsharebuttonbox">
+                <a href="#" class="bds_more" data-cmd="more"></a>
+                <a href="#" class="bds_qzone" data-cmd="qzone" title="分享到QQ空间"></a>
+                <a href="#" class="bds_tsina" data-cmd="tsina" title="分享到新浪微博"></a>
+                <a href="#" class="bds_tqq" data-cmd="tqq" title="分享到腾讯微博"></a>
+                <a href="#" class="bds_renren" data-cmd="renren" title="分享到人人网"></a>
+                <a href="#" class="bds_weixin" data-cmd="weixin" title="分享到微信"></a>
+            </div>
+            <p>发布时间：<span>@Model.NewsDetails.Cre_date</span></p>
+        </div>
+        <div class="art_con" style="margin:30px 0 0 0;">
+            <p>
+                @Html.Raw(Model.NewsDetails.Txt)
+            </p>
+        </div>
+        <div class="art_list" style="margin-top:200px;">
+            @if (ViewBag.beforenews != null)
+            {
+                <a href="@Url.Content("~/NewsDetails/Index?id=")@ViewBag.beforenews.Id"><h5>上一篇：@ViewBag.beforenews.Title</h5></a>
+            }
+
+            @if (ViewBag.afternews != null)
+            {
+                <a href="@Url.Content("~/NewsDetails/Index?id=")@ViewBag.afternews.Id"><h5>下一篇：@ViewBag.afternews.Title</h5></a>
+            }
+        </div>
+        <div class="comment">
+            <div class="form">
+                <div class="img"><img src="@Url.Content("~/images/comment_img.png")"></div>
+                <input type="hidden" id="commidhidden" value="@Model.NewsDetails.Id" />
+                <div class="sr"><input type="text" placeholder="说说你的看法" id="TxtCommon" /></div>
+                <div><input class="submit" type="button" value="发表评论" onclick="commTxt();" /></div>
+            </div>
+            <div class="clear"></div>
+            <h5>精彩评论</h5>
+            <div class="comment_list">
+                <ul id="Commentaryulid"></ul>
+            </div>
+            <div class="total">共<span id="totalrowsid"> </span>条评论，<a href="@Url.Content("~/MoreComments/Index")">查看更多>></a></div>
+        </div>
+    </div>
+    <div class="list">
+        <div class="recommend" style="margin-top:85px;">
+            @if (Model.NewsDetails.TypeNote == 0)
+            {
+                <h2>推荐公司新闻</h2>
+            }
+            else if (Model.NewsDetails.TypeNote == 1)
+            {
+                <h2>推荐行业资讯</h2>
+            }
+            else
+            {
+                <h2>推荐社会活动</h2>
+            }
+            <ul class="rec_list">
+                @foreach (var item in Model.NewsInformations)
+                {
+                    <li>
+                        <h3>@item.Title</h3>
+                        <div class="js"><span class="time">@item.Cre_date</span></div>
+                        <p>@Html.Raw(item.Txt)</p>
+                        <div class="a_more"><a href="@Url.Content("~/NewsDetails/Index?id=")@item.Id" target="_blank"> > 查看更多</a></div>
+                    </li>
+                }
+
+            </ul>
+        </div>
+    </div>
+</div>
+<div class="clear"></div>
+@section scripts{
+
+    @*通过ip得到地理位置*@
+    <script type="text/javascript" src="http://int.dpool.sina.com.cn/iplookup/iplookup.php?format=js" charset="utf-8"></script>
+    <script type="text/javascript">
+            //加载页面时加载评论
+   var ArcId =    @Model.NewsDetails.Id;
+        $(function () {
+
+            $.ajax({
+                type: "get",
+                url: "@Url.Content("~/Comment/GetCommList")",
+                data: {
+                    AId: ArcId
+                },
+                dataType: "json",
+                success: function (data) {
+                    if (data.datalist != null) {
+                        ulhtml(data.datalist, "Commentaryulid");
+                        $('#totalrowsid').text(data.totalrows);
+                    }
+                }
+            });
+        });
+        //创建评论
+        function commTxt() {
+            //alert(122);
+            var txt = $('#TxtCommon').val();
+            var commidhidden = $('#commidhidden').val();
+            var ss = remote_ip_info['country'] + remote_ip_info['province'] + remote_ip_info['city'];
+         //alert(ss);
+            $.ajax({
+                type: "post",
+                url: "@Url.Content("~/Comment/Create")",
+                data: {
+                    PublicationContent: txt
+                    , AId: commidhidden
+                    , UserAddress: ss
+                }    ,
+
+                dataType: "json",
+                success: function (data) {
+                    //alert(data.code);
+                    $('#TxtCommon').empty();   //清空resText里面的所有内容
+                    ulhtml(data.datalist, "Commentaryulid");
+                    $('#totalrowsid').text(data.totalrows);
+                }
+            });
+        }
+        //动态更新评论展示区
+        function ulhtml(data,strulid) {
+            var html = '';
+                           $.each(data, function (commentIndex, comment) {
+                        //alert(comment.Id);
+                                       html+=             '  <li>    '
+                       +' <div class="zan">  '
+                                           + '<span onclick="AddCommInt(' + comment.Id + ');"><img src="@Url.Content("~/images/zan.png")" id="zanimgid' + comment.Id + '"> 赞 <span id="AddCommInt' + comment.Id+'">'+comment.ALaud+'</span> </span>'
+                      +'  </div>'
+                        +'<div class="li_img"><img src="@Url.Content("~/images/little.png")"> </div>'
+                        +'<div class="li_title">'
+                                           + '   <span class="name">' + comment.UserAddress + '</span>发表于<span class="time">' + comment.Cre_TimeStr+'</span>'
+                        +'</div>'
+                                           + '  <p>' + comment.PublicationContent+'</p>'
+                    +'</li>'
+
+                        //html += '<div class="comment"><h6>' + comment['username']
+                        //    + ':</h6><p class="para"' + comment['content']
+                        //    + '</p></div>';
+            });
+                           $('#' + strulid+'').html(html);
+        }
+          //点赞加1
+        function AddCommInt(obj) {
+            //alert(obj);
+            $.ajax({
+                type: "post",
+                url: "@Url.Content("~/Comment/GiveTheThumbsUp")",
+                data: {
+                    id: parseInt(obj)
+                },
+                success: function (data) {
+                    //alert(data.dataup);
+                    $('#zanimgid' + obj + '').attr("src", "@Url.Content("~/images/zanhong.png")");
+                    $('#AddCommInt' + obj + '').text(data.dataup);
+                }
+            });
+
+        };
+
+        //视频播放效果
+        var player = document.getElementById("player");
+        var playOrPause = document.getElementById("playOrPause");
+        var mask = document.getElementsByClassName('mask');
+        playOrPause.onclick = function () {
+            player.play();	//播放影片
+            player.controls = true;
+            mask[0].style.display = 'none';
+        }
+        player.onpause = function () {
+            mask[0].style.display = 'inline-block';
+        }
+        player.onplay = function () {
+            mask[0].style.display = 'none';
+        }
+
+    </script>
+    <script>
+        window._bd_share_config = {
+            "common": {
+                "bdPopTitle": "您的自定义pop窗口标题",
+                "bdSnsKey": {},
+                "bdText": "此处填写自定义的分享内容",
+                "bdMini": "2",
+                "bdMiniList": false,
+                "bdPic": "http://localhost/centlight/public/attachment/201410/24/14/5449ef39574f5_282x220.jpg", /* 此处填写要分享图片地址 */
+                "bdStyle": "0",
+                "bdSize": "16"
+            },
+            "share": {}
+        };
+        with (document) 0[
+            (getElementsByTagName('head')[0] || body).
+                appendChild(createElement('script')).
+                src = 'http://bdimg.share.baidu.com/static/api/js/share.js?v=89860593.js?cdnversion=' + ~(-new Date() / 36e5)
+        ];
+    </script>
+}

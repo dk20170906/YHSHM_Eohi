@@ -1,0 +1,76 @@
+﻿@model EohiSHM.AutoWeb.ViewModels.HomeModels
+@{
+    ViewBag.Title = "社会活动";
+    Layout = "~/Views/Shared/_LayoutNewsInf.cshtml";
+}
+
+
+<div>
+    <div class="inner">
+        <div class="record">
+            <ul class="news_information">
+                @foreach (var item in Model.NewsInformations)
+                {
+                    <li>
+                        <div class="img"><img src="@item.Previewimg" alt="" /></div>
+                        <h2><a href="@Url.Content("~/NewsDetails/Index?id=")@item.Id" target="_blank">>查看更多</a>@item.Title</h2>
+                        <p>
+                            @Html.Raw(item.Txt)
+                        </p>
+                    </li>
+                }
+
+            </ul>
+        </div>
+    </div>
+
+    <div class="page">
+
+
+        <a class="page" id="page_1" href="@Url.Content("~/Socialization/Index?pageindex=1")">1</a>
+
+        @if (ViewBag.tatalrows > 0)
+        {
+            int pageindexMax = (int)Math.Ceiling((float)ViewBag.tatalrows / 10);
+            for (int i = 2; i <= pageindexMax; i++)
+            {
+                <a class="page" id="page_@i" href="@Url.Content("~/Socialization/Index?pageindex=")@i" onclick="pagination(@i)">@i</a>
+            }
+            <a class="mod_page_lk" id="nextpageindex" href="@Url.Content("~/Socialization/Index?pageindex=2")">下一页</a>
+            <a class="mod_page_last" href="@Url.Content("~/Socialization/Index?pageindex=")@pageindexMax">末页</a>
+        }
+
+    </div>
+
+</div>
+@section scripts{
+    <script type="text/javascript">
+        $(function () {
+            //从url中获取当前胡pageindex;
+            //$(obj).addClass('page-on').siblings().removeClass('page-on');
+            var index = getQueryString("pageindex");
+            if (index == undefined || index == null)
+                $("#page_1").addClass("page-on");
+            //动态设置页码a标签样式 css
+            $("#page_" + index).addClass("page-on");
+
+        })
+        //从url地址获取参数值;
+        function getQueryString(name) {
+            var reg = new RegExp("(^|&)" + name + "=([^&]*)(&|$)", "i");
+            var r = window.location.search.substr(1).match(reg);
+            if (r != null) return unescape(r[2]); return null;
+        }
+        $('#nextpageindex').click(function () {
+                        var index = getQueryString("pageindex");
+            if (index == undefined || index == null)
+                index = 0;
+            index++;
+            if (index >=@ViewBag.tatalrows/10) {
+                index= Math.ceil(@ViewBag.tatalrows/ 10);
+            }
+            $('#nextpageindex').attr('href', "@Url.Content("~/Socialization/Index?pageindex=")" + index);
+        });
+    </script>
+}
+

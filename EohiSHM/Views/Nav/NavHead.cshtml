@@ -1,0 +1,60 @@
+﻿@{
+    Layout = null;
+}
+
+<div class="layui-header">
+    <a href="#" class="layui-hide-xs"><div class="layui-logo">优海信息</div></a>
+    <ul class="layui-nav layui-layout-right">
+        <li class="layui-nav-item">
+            <a href="">控制台<span class="layui-badge">9</span></a>
+        </li>
+        <li class="layui-nav-item">
+            <a href="">个人中心<span class="layui-badge-dot"></span></a>
+        </li>
+        <li class="layui-nav-item">
+            <a href=""><img src="http://t.cn/RCzsdCq" class="layui-nav-img">我</a>
+            <dl class="layui-nav-child">
+                <dd><a href="javascript:;">修改信息</a></dd>
+                <dd><a href="javascript:;">安全管理</a></dd>
+                <dd><a href="javascript:;">退了</a></dd>
+            </dl>
+        </li>
+    </ul>
+
+    @*<div class="laytable-cell-numbers">*@
+    @*<!-- 头部区域（可配合layui已有的水平导航） -->*@
+    @*<ul class="layui-nav" lay-filter="">*@
+    @*@{
+        foreach (var item in ViewBag.menulist)
+        {
+            <li class="layui-nav-item">*@
+    @*<a href="javascript:void(0);"><span>@item.menuname</span></a>
+                            <ul class="layui-nav-child">
+                                @if (item.MenuChildren.Count > 0)
+                                {
+                                    foreach (var tem in item.MenuChildren)
+                                    {
+                                        <li><a href="@Url.Content("~/Admin/Article/index")">@tem.menuname</a></li>
+                                    }
+
+                                }
+                            </ul>
+                        </li>
+                    }
+                }
+            </ul>
+        </div>*@
+    @*<ul class="layui-nav layui-layout-right">
+            <li class="layui-nav-item">
+                <a href="javascript:;">
+                    <img src="http://t.cn/RCzsdCq" class="layui-nav-img">
+                    管理员
+                </a>
+                <dl class="layui-nav-child">
+                    <dd><a href="">基本资料</a></dd>
+                    <dd><a href="">安全设置</a></dd>
+                </dl>
+            </li>
+            <li class="layui-nav-item"><a href="">退了</a></li>
+        </ul>*@
+</div>

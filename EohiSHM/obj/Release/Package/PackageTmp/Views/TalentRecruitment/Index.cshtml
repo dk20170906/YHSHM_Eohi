@@ -1,0 +1,308 @@
+﻿@using EohiSHM.Models;
+@{
+    ViewBag.Title = "人才招聘";
+}
+
+<!DOCTYPE html>
+<html>
+<head>
+    <meta charset="utf-8">
+    <meta name="viewport" content="width=device-width, user-scalable=no, initial-scale=1.0, maximum-scale=1.0, minimum-scale=1.0">
+    <title>人才招聘</title>
+    <style>
+        body {
+            margin: 10px;
+        }
+
+        .demo-carousel {
+            height: 200px;
+            line-height: 200px;
+            text-align: center;
+        }
+    </style>
+</head>
+<body>
+    <blockquote class="layui-elem-quote layui-text" style="margin-top: 20px;">
+        人才招聘
+    </blockquote>
+    <div class="demoTable">
+
+        <button class="layui-btn" data-method="setTop" id="creatnews" data-type="reload">添加</button>
+
+        <table class="layui-hide" id="newslisttab" lay-filter="demo"></table>
+
+
+        <script type="text/html" id="barDemo">
+            @*<a class="layui-btn layui-btn-primary layui-btn-xs" lay-event="detail">查看</a>*@
+            <a class="layui-btn layui-btn-xs" lay-event="edit">编辑</a>
+            <a class="layui-btn layui-btn-danger layui-btn-xs" lay-event="del">删除</a>
+        </script>
+
+    </div>
+    <input id="iframe_handle_status" value="" hidden="hidden">
+    @section scripts{
+        <script type="text/html" id="titleTpl">
+            <input type="text" id="signinTime" class="layui-input" value="{{d.signinTime}}" />
+        </script>
+        <script>
+
+
+
+
+
+layui.config({
+  version: '1515376178709' //为了更新 js 缓存，可忽略
+});
+
+layui.use(['laydate', 'laypage', 'layer', 'table', 'carousel', 'upload', 'element'], function(){
+  var laydate = layui.laydate //日期
+  ,laypage = layui.laypage //分页
+        layer = layui.layer //弹层
+            , table = layui.table //表格
+            , carousel = layui.carousel //轮播
+            , upload = layui.upload //上传
+            , element = layui.element;//元素操作
+
+  //向世界问个好
+            layer.msg('Hello World');
+
+
+
+  //监听Tab切换
+  element.on('tab(demo)', function(data){
+    layer.msg('切换了：'+ this.innerHTML);
+    console.log(data);
+  });
+
+  //执行一个 table 实例
+        tabelnows = table.render({
+            elem: '#newslisttab'
+            , height: 332
+            , url: '@Url.Content("~/TalentRecruitment/Getlist")' //数据接口
+           , page: true //开启分页
+            , cols: [[ //表头
+                { field: 'Id', title: 'ID', width: 80, sort: true, fixed: 'left' }
+                , { field: 'Department', title: '陪门', width: 100 }
+                , { field: 'PositionJob', title: '职位', width: 100 }
+                , { field: 'IsVisibelStr', title: '是否显示', width: 80 }
+                , { field: 'AreaidtextLong', title: '工作地点', width: 250 }
+                , { field: 'Cre_date', title: '创建时间', width: 135, sort: true }
+                , { field: 'TermOfValidity', title: '有效期', width: 135, sort: true }
+                , { field: 'CountInt', title: '招聘人数', width: 135 }
+                , { field: 'Remarks', title: '备注', width: 135 }
+                ,{fixed: 'right', width: 165, align:'center', toolbar: '#barDemo'}
+    ]]
+  });
+
+
+        //监听工具条
+        table.on('tool(demo)', function (obj) {
+            var data = obj.data;
+            if (obj.event === 'detail') {
+                DetailNews(data.Id);
+               // layer.msg('ID：' + data.Id + ' 的查看操作');
+            } else if (obj.event === 'del') {
+                layer.confirm('真的删除行么', function (index) {
+                    console.log(data);
+                  //  alert(data.Id);
+                    $.ajax({
+                        url: "@Url.Content("~/TalentRecruitment/Delete")",
+                        type: "POST",
+                        data: { "id": data.Id},
+                        dataType: "json",
+                        success: function (data) {
+                            if (data.state == 1) {
+                                //删除这一行
+                                obj.del();
+                                //关闭弹框
+                                layer.close(index);
+                                layer.msg("删除成功", { icon: 6 });
+                            } else {
+                                layer.msg(data.msg, {
+                                    icon: 1,
+                                    time: 2000 //2秒关闭（如果不配置，默认是3秒）
+                                }, function () {
+                                    //history.go(0);
+                                });
+                            }
+                        },
+                        error: function (e) {
+                            layer.msg("错误！[" + e.state + "][" + e.msg + "]", {
+                                icon: 1,
+                                time: 2000 //2秒关闭（如果不配置，默认是3秒）
+                            }, function () {
+                                //history.go(0);
+                            });
+                        }
+
+                    });
+                });
+            } else if (obj.event === 'edit') {
+                    EditNows(data.Id);
+            }
+        });
+            function EditNows(id) {
+
+                $("#iframe_handle_status").val("0");
+                                               layer.open({
+                                             type: 2 //此处以iframe举例
+                                                              , title: '编辑'
+                                                                , area: ['900px', '600px']
+                                                                 , shade: 0.5
+                                                                , maxmin: true
+                                                                     , content: '@Url.Content("~/TalentRecruitment/Edit")?id='+id
+                                                                 , btn: ['保存', '关闭'] //只是为了演示
+                                                             , yes: function () {
+                                                                 var framewindow = parent.window['layui-layer-iframe' + layer.index].window;
+                                                                 framewindow.DataSave();
+                                                               }
+                                                       , btn2: function () {
+                                                                layer.closeAll();
+                                                                  }
+                                                         , zIndex: layer.zIndex //重点1
+                                                 , success: function (layero) {
+                                                             layer.setTop(layero); //重点2
+                                                                        }
+                                                         , end: function () {
+                                                     // 判断iframe是否操作成功;
+                                                       if ($("#iframe_handle_status").val() == 1) {
+                                                                    layer.msg('保存成功！', {
+                                                                                icon: 1,
+                                                                     time: 2000 //2秒关闭（如果不配置，默认是3秒）
+                                                                         }, function () {
+                                                                                //history.go(0);
+                                                                                   });
+
+    //成功;刷新网格;
+    //执行重载
+                                                                   reloadDatas();
+                                                         }
+                                                       }
+                                            });
+                }
+
+
+                function reloadDatas() {
+                    table.reload('newslisttab', {
+                        page: {
+                            curr: 1 //重新从第 1 页开始
+                        }
+                        , where: {
+
+                            //keyworldTest: $("#searchtxt_id").val()
+
+                        }
+                    });
+                }
+    function DetailNews(id) {
+    $("#iframe_handle_status").val("0");
+    layer.open({
+    type: 2 //此处以iframe举例
+    , title: '创建'
+    , area: ['900px', '600px']
+    , shade: 0.5
+    , maxmin: true
+    , content: '@Url.Content("~/TalentRecruitment/Details")?id=' + id
+    , btn: ['保存', '关闭'] //只是为了演示
+    , yes: function () {
+    //$(that).click();
+    //执行保存;
+    //layer.DataSave();
+    // var iframeWin = window[layero.find('iframe')[0]['name']]; //得到iframe页的窗口对象，执行iframe页的方法：iframeWin.method();
+    //执行当前子frame页面的方法;
+        var framewindow = parent.window['layui-layer-iframe' + layer.index].window;
+        framewindow.DataSave();
+    }
+    , btn2: function () {
+    layer.closeAll();
+    }
+    , zIndex: layer.zIndex //重点1
+    , success: function (layero) {
+    layer.setTop(layero); //重点2
+    }
+    , end: function () {
+    // 判断iframe是否操作成功;
+    if ($("#iframe_handle_status").val() == "1") {
+    layer.msg('保存成功！', {
+    icon: 1,
+    time: 2000 //2秒关闭（如果不配置，默认是3秒）
+    }, function () {
+    //history.go(0);
+    });
+
+    //成功;刷新网格;
+    //执行重载
+    table.reload('table1', {
+    page: {
+    curr: 1 //重新从第 1 页开始
+    }
+    , where: {
+
+    keyworldTest: demoReload.val()
+
+    }
+    });
+    }
+    }
+    });
+
+    }
+
+
+    $('#creatnews').click(function () {
+        EditNows(0);
+    })
+
+                //日期
+                laydate.render({
+                    elem: '#selectcretimeb'
+                });
+                laydate.render({
+                    elem: '#selectcretimel'
+                });
+
+
+    //执行一个轮播实例
+    carousel.render({
+    elem: '#test1'
+    ,width: '100%' //设置容器宽度
+    ,height: 200
+    ,arrow: 'none' //不显示箭头
+    ,anim: 'fade' //切换动画方式
+    });
+
+    //将日期直接嵌套在指定容器中
+    var dateIns = laydate.render({
+    elem: '#laydateDemo'
+    ,position: 'static'
+    ,calendar: true //是否开启公历重要节日
+    ,mark: { //标记重要日子
+    '0-10-14': '生日'
+    ,'2017-11-11': '剁手'
+    ,'2017-11-30': ''
+    }
+    ,done: function(value, date, endDate){
+    if(date.year == 2017 && date.month == 11 && date.date == 30){
+    dateIns.hint('一不小心就月底了呢');
+    }
+    }
+    ,change: function(value, date, endDate){
+    layer.msg(value)
+    }
+    });
+
+
+
+    function callBack() {
+    laydate.render({
+    elem: '#signinTime'
+    , format: 'HH:mm'
+    });
+    }
+
+
+    });
+        </script>
+    }
+</body>
+</html>

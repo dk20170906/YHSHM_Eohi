@@ -1,0 +1,101 @@
+﻿@{
+    Layout = null;
+}
+
+<head lang="en">
+
+    <meta charset="UTF-8">
+    <link rel="shortcut icon" href="">
+    <meta http-equiv="Content-Type" content="text/html; charset=utf-8">
+    <meta name="keywords" content="智能制造，MAS">
+    <meta name="description" content="">
+    <meta name="author" content="杭州优海信息系统有限公司">
+    <title>杭州优海信息系统有限公司，专注互联网时代智能制造解决方案</title>
+    <link href="@Url.Content("~/Content/css/base.css")" rel="stylesheet" />
+    <link href="@Url.Content("~/Content/css/style.css")" rel="stylesheet" />
+    <link href="@Url.Content("~/Content/css/index_v=2017.css")" rel="stylesheet" />
+    <script src="@Url.Content("~/Scripts/js/jquery-3.2.1.min.js")"></script>
+    <script src="@Url.Content("~/Scripts/js/index.js")"></script>
+    <script src="@Url.Content("~/Scripts/js/jquery.flexslider-min.js")"></script>
+
+    <!--引用百度地图API-->
+    <style type="text/css">
+        html, body {
+            margin: 0;
+            padding: 0;
+        }
+
+        .iw_poi_title {
+            color: #CC5522;
+            font-size: 14px;
+            font-weight: bold;
+            overflow: hidden;
+            padding-right: 13px;
+            white-space: nowrap
+        }
+
+        .iw_poi_content {
+            font: 12px arial,sans-serif;
+            overflow: visible;
+            padding-top: 4px;
+            white-space: -moz-pre-wrap;
+            word-wrap: break-word
+        }
+    </style>
+    <script type="text/javascript" src="http://api.map.baidu.com/api?key=&v=1.1&services=true"></script>
+    <script type="text/javascript">
+        //广告图片轮播效果
+        $(document).ready(function () {
+            $('.flexslider').flexslider({
+                directionNav: true,
+                pauseOnAction: false
+            });
+        });
+    </script>
+    <script>
+        //窗口弹出效果
+        //点击登录class为tc 显示
+        $(".tc").click(function () {
+            $("#gray").show();
+            $("#popup").show();//查找ID为popup的DIV show()显示#gray
+            tc_center();
+        });
+        //点击关闭按钮
+        $("a.guanbi").click(function () {
+            $("#gray").hide();
+            $("#popup").hide();//查找ID为popup的DIV hide()隐藏
+        })
+
+        //窗口水平居中
+        $(window).resize(function () {
+            tc_center();
+        });
+        function tc_center() {
+            var _top = ($(window).height() - $(".popup").height()) / 2;
+            var _left = ($(window).width() - $(".popup").width()) / 2;
+
+            $(".popup").css({ top: _top, left: _left });
+        }
+
+        //新加搜索效果
+        $(function () {
+            $(".search-box .butn").on('click', function () {
+                if ($(this).hasClass('hov')) {
+                    $(this).removeClass('hov');
+                    $(this).siblings('.share-sub').stop().animate({ width: 0 }, 500);
+                } else {
+                    $(this).addClass('hov');
+                    $(this).siblings('.share-sub').stop().animate({ width: 292 }, 500);
+                }
+            });
+            $(document).mouseup("click", function (e) {
+                var _con = $('.search-box');//这个目标区域就是弹框
+                if (!_con.is(e.target) && _con.has(e.target).length === 0) {
+                    $(".share-sub").stop().animate({ width: 0 }, 0);
+                    $(".search-box .butn").removeClass('hov');
+                }
+            })
+        })
+    </script>
+</head>
+

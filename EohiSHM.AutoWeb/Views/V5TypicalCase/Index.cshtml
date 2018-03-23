@@ -1,0 +1,85 @@
+﻿@model EohiSHM.AutoWeb.ViewModels.HomeModels
+@{
+    ViewBag.Title = "V5典型案例";
+    Layout = "~/Views/Shared/_LoyoutProductService.cshtml";
+}
+<div>
+    <div class="case">
+        <div class="inner">
+            <div class="about about_team">
+                <h1>典型案例</h1>
+                <div id="effect" class="effects clearfix">
+                    @foreach (var item in Model.TypicalCases)
+                    {
+                        <div class="img">
+                            <img src="@item.Previewimg" alt="">
+                            <div class="overlay">
+                                <p>@item.Title</p>
+                                <a href="@Url.Content("~/V5TYCDetails/Index?id=")@item.Id" target="_blank" class="close-overlay ">查看案例</a>
+                            </div>
+                        </div>
+                    }
+                </div>
+            </div>
+        </div>
+    </div>
+
+    <div class="page">
+
+
+        <a class="page" id="page_1" href="@Url.Content("~/ExpertCommittee/Index?pageindex=1")">1</a>
+
+        @if (ViewBag.tatalrows >0)
+        {
+            int pageindexMax = (int)Math.Ceiling((float)ViewBag.tatalrows / 8);
+            for (int i = 2; i <= pageindexMax; i++)
+            {
+                <a class="page" id="page_@i" href="@Url.Content("~/ExpertCommittee/Index?pageindex=")@i" onclick="pagination(@i)">@i</a>
+            }
+            <a class="mod_page_lk" id="nextpageindex" href="@Url.Content("~/ExpertCommittee/Index?pageindex=2")">下一页</a>
+            <a class="mod_page_last" href="@Url.Content("~/ExpertCommittee/Index?pageindex=")@pageindexMax">末页</a>
+        }
+
+    </div>
+</div>
+@section scripts{
+    <script>
+        //典型案例划入显示效果
+        $('#effect .img').mouseover(function () {
+            $(this).children(".overlay").show();
+        })
+        $('#effect .img').mouseleave(function () {
+            $(this).children(".overlay").hide();
+        })
+    </script>
+
+    <script type="text/javascript">
+        $(function () {
+            //从url中获取当前胡pageindex;
+            //$(obj).addClass('page-on').siblings().removeClass('page-on');
+            var index = getQueryString("pageindex");
+            if (index == undefined || index == null)
+                $("#page_1").addClass("page-on");
+            //动态设置页码a标签样式 css
+            $("#page_" + index).addClass("page-on");
+
+        })
+        //从url地址获取参数值;
+        function getQueryString(name) {
+            var reg = new RegExp("(^|&)" + name + "=([^&]*)(&|$)", "i");
+            var r = window.location.search.substr(1).match(reg);
+            if (r != null) return unescape(r[2]); return null;
+        }
+        $('#nextpageindex').click(function () {
+                        var index = getQueryString("pageindex");
+            if (index == undefined || index == null)
+                index = 0;
+            index++;
+            if (index >=@ViewBag.tatalrows/8) {
+                index= Math.ceil(@ViewBag.tatalrows/ 8);
+            }
+            $('#nextpageindex').attr('href', "@Url.Content("~/ExpertCommittee/Index?pageindex=")" + index);
+        });
+    </script>
+
+}

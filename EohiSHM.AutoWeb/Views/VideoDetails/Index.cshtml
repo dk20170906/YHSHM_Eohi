@@ -1,0 +1,214 @@
+﻿@model EohiSHM.AutoWeb.ViewModels.HomeModels
+@{
+    ViewBag.Title = "视频详情";
+    Layout = "~/Views/Shared/_LayoutYHTeachRoom.cshtml";
+}
+
+<div class="inner class_details ">
+    <h3>@Model.YHVideoFirst.Title</h3>
+    <div class="subtitle">
+        <a href="#">分享</a>
+        <div class="bdsharebuttonbox">
+            <a href="#" class="bds_more" data-cmd="more"></a>
+            <a href="#" class="bds_qzone" data-cmd="qzone" title="分享到QQ空间"></a>
+            <a href="#" class="bds_tsina" data-cmd="tsina" title="分享到新浪微博"></a>
+            <a href="#" class="bds_tqq" data-cmd="tqq" title="分享到腾讯微博"></a>
+            <a href="#" class="bds_renren" data-cmd="renren" title="分享到人人网"></a>
+            <a href="#" class="bds_weixin" data-cmd="weixin" title="分享到微信"></a>
+        </div>
+        <p>讲师：<span>@Model.YHVideoFirst.Author</span>发布时间：<span>@Model.YHVideoFirst.Cre_Time</span></p>
+    </div>
+    <div class="video">
+        <video src="@Model.YHVideoFirst.VideoFile" width="100%" height="100%" id="player">
+            <source src="@Model.YHVideoFirst.VideoFile" type="video/mp4" />
+            <source src="@Model.YHVideoFirst.VideoFile" type="video/ogg">//若不支持MP4，则会继续ogv，webm
+            <source src="@Model.YHVideoFirst.VideoFile" type="video/webm">
+        </video>
+        <div class="mask">
+            <img id="ad" src="@Url.Content("~/images/video.png")">
+            <img id="playOrPause" src="@Url.Content("~/images/play.png")">
+        </div>
+    </div>
+</div>
+<div class="inner">
+    <div class="article">
+        <div class="art_con">
+            @Html.Raw(Model.YHVideoFirst.Txt);
+        </div>
+        <div class="art_list">
+            @if (ViewBag.beforenews != null)
+            {
+                <a href="@Url.Content("~/VideoDetails/Index?id=")@ViewBag.beforenews.Id"><h5>上一篇：@ViewBag.beforenews.Title</h5></a>
+            }
+
+            @if (ViewBag.afternews != null)
+            {
+                <a href="@Url.Content("~/VideoDetails/Index?id=")@ViewBag.afternews.Id"><h5>下一篇：@ViewBag.afternews.Title</h5></a>
+            }
+        </div>
+        <div class="comment">
+            <div>
+                <div class="img"><img src="@Url.Content("~/images/comment_img.png")"></div>
+                <input type="hidden" id="commidhidden" value="@Model.YHVideoFirst.Id" />
+                <div class="sr"><input type="text" placeholder="说说你的看法" id="TxtCommon" /></div>
+                <div><input class="submit" type="button" value="发表评论" onclick="commTxt();" /></div>
+            </div>
+            <div class="clear"></div>
+            <h5>精彩评论</h5>
+            <div class="comment_list">
+                <ul id="Commentaryulid"></ul>
+            </div>
+            <div class="total">共<span id="totalrowsid"> </span>条评论，<a href="@Url.Content("~/MoreComments/Index")">查看更多>></a></div>
+        </div>
+    </div>
+    <div class="list">
+        <div class="lecturer">
+            <div class="lec_img"><img src="@Model.YHVideoFirst.Previewimg"> </div>
+            <h3>@Model.YHVideoFirst.Author</h3>
+            <p>@Html.Raw(Model.YHVideoFirst.Txt)</p>
+            <div class="more"><a href="@Url.Content("~/TeachingVideo/Index?Author=")@Model.YHVideoFirst.Author">查看讲师其他视频</a></div>
+        </div>
+        <div class="recommend">
+            <h2>推荐 视频</h2>
+            <ul class="rec_list">
+                @foreach (var item in Model.YouhaiClassrooms)
+                {
+                    <li>
+                        <a href="@Url.Content("~/VideoDetails/Index?id=")@item.Id"> <h3>@item.Title</h3></a>
+                        <div class="js">讲师：<span>@item.Author</span><span class="time">@item.Cre_Time</span></div>
+                        <p>@Html.Raw(item.Txt)</p>
+                        <div class="a_more"><a href="@Url.Content("~/VideoDetails/Index?id=")@item.Id" target="_blank"> > 查看更多</a></div>
+                    </li>
+                }
+            </ul>
+        </div>
+    </div>
+</div>
+<div class="clear"></div>
+@section scripts{
+
+    @*通过ip得到地理位置*@
+    <script type="text/javascript" src="http://int.dpool.sina.com.cn/iplookup/iplookup.php?format=js" charset="utf-8"></script>
+    <script type="text/javascript">
+            //加载页面时加载评论
+   var ArcId =    @Model.YHVideoFirst.Id;
+        $(function () {
+
+            $.ajax({
+                type: "get",
+                url: "@Url.Content("~/Comment/GetCommList")",
+                data: {
+                    AId: ArcId
+                },
+                dataType: "json",
+                success: function (data) {
+                    if (data.datalist != null) {
+                        ulhtml(data.datalist, "Commentaryulid");
+                        $('#totalrowsid').text(data.totalrows);
+                    }
+                }
+            });
+        });
+        //创建评论
+        function commTxt() {
+            //alert(122);
+            var txt = $('#TxtCommon').val();
+            var commidhidden = $('#commidhidden').val();
+            var ss = remote_ip_info['country'] + remote_ip_info['province'] + remote_ip_info['city'];
+         //alert(ss);
+            $.ajax({
+                type: "post",
+                url: "@Url.Content("~/Comment/Create")",
+                data: {
+                    PublicationContent: txt
+                    , AId: commidhidden
+                    , UserAddress: ss
+                }    ,
+
+                dataType: "json",
+                success: function (data) {
+                    //alert(data.code);
+                    $('#TxtCommon').empty();   //清空resText里面的所有内容
+                    ulhtml(data.datalist, "Commentaryulid");
+                    $('#totalrowsid').text(data.totalrows);
+                }
+            });
+        }
+        //动态更新评论展示区
+        function ulhtml(data,strulid) {
+            var html = '';
+                           $.each(data, function (commentIndex, comment) {
+                        //alert(comment.Id);
+                                       html+=             '  <li>    '
+                       +' <div class="zan">  '
+                                           + '<span onclick="AddCommInt(' + comment.Id + ');"><img src="@Url.Content("~/images/zan.png")" id="zanimgid' + comment.Id + '"> 赞 <span id="AddCommInt' + comment.Id+'">'+comment.ALaud+'</span> </span>'
+                      +'  </div>'
+                        +'<div class="li_img"><img src="@Url.Content("~/images/little.png")"> </div>'
+                        +'<div class="li_title">'
+                                           + '   <span class="name">' + comment.UserAddress + '</span>发表于<span class="time">' + comment.Cre_TimeStr+'</span>'
+                        +'</div>'
+                                           + '  <p>' + comment.PublicationContent+'</p>'
+                    +'</li>'
+
+                        //html += '<div class="comment"><h6>' + comment['username']
+                        //    + ':</h6><p class="para"' + comment['content']
+                        //    + '</p></div>';
+            });
+                           $('#' + strulid+'').html(html);
+        }
+          //点赞加1
+        function AddCommInt(obj) {
+            //alert(obj);
+            $.ajax({
+                type: "post",
+                url: "@Url.Content("~/Comment/GiveTheThumbsUp")",
+                data: {
+                    id: parseInt(obj)
+                },
+                success: function (data) {
+                    //alert(data.dataup);
+                    $('#zanimgid' + obj + '').attr("src", "@Url.Content("~/images/zanhong.png")");
+                    $('#AddCommInt' + obj + '').text(data.dataup);
+                }
+            });
+
+        };
+
+        //视频播放效果
+        var player = document.getElementById("player");
+        var playOrPause = document.getElementById("playOrPause");
+        var mask = document.getElementsByClassName('mask');
+        playOrPause.onclick = function () {
+            player.play();	//播放影片
+            player.controls = true;
+            mask[0].style.display = 'none';
+        }
+        player.onpause = function () {
+            mask[0].style.display = 'inline-block';
+        }
+        player.onplay = function () {
+            mask[0].style.display = 'none';
+        }
+
+    </script>
+    <script>
+        window._bd_share_config = {
+            "common": {
+                "bdPopTitle": "您的自定义pop窗口标题",
+                "bdSnsKey": {},
+                "bdText": "此处填写自定义的分享内容",
+                "bdMini": "2",
+                "bdMiniList": false,
+                "bdPic": "http://localhost/centlight/public/attachment/201410/24/14/5449ef39574f5_282x220.jpg", /* 此处填写要分享图片地址 */
+                "bdStyle": "0",
+                "bdSize": "16"
+            },
+            "share": {}
+        };
+        with (document) 0[
+            (getElementsByTagName('head')[0] || body).
+                appendChild(createElement('script')).
+                src = 'http://bdimg.share.baidu.com/static/api/js/share.js?v=89860593.js?cdnversion=' + ~(-new Date() / 36e5)
+        ];
+    </script>
+}

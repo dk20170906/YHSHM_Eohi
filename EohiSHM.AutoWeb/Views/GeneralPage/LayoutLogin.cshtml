@@ -1,0 +1,35 @@
+﻿@{
+    Layout = null;
+}
+
+<div class="popup" id="popup">
+    <div class="top_nav" id='top_nav'>
+        <div align="center">
+            <a class="guanbi"></a>
+        </div>
+        <div class="login_logo"><img src="@Url.Content("~/images/login_logo.png")"> </div>
+        <div class="tc_login">
+            <form method="POST" name="form_login" target="_top">
+                <div class="login_con">
+                    <div class="field ">
+                        <label for="" class="user"></label>
+                        <input type="text" name="name" id="name" required="required" placeholder="用户名/邮箱" autocomplete="off" class="input_yh">
+                    </div>
+                    <div class="error"> * 用户名错误</div>
+                </div>
+                <div class="login_con">
+                    <div class="field ">
+                        <label for="" class="pwd"></label>
+                        <input type="text" name="name" id="pwd" required="required" placeholder="8位密码" autocomplete="off" class="input_yh">
+                    </div>
+                    <div class="error"> * 密码错误</div>
+                </div>
+                <div class="btn">
+                    <input type="submit" class="button" title="登录" value="立即登录">
+                </div>
+                <p><a href="#">忘记登录密码?</a><a href="#">免费注册</a></p>
+            </form>
+        </div>
+    </div>
+
+</div>

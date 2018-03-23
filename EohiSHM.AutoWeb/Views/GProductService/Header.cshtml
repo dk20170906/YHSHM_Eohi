@@ -1,0 +1,20 @@
+﻿@{
+    Layout = null;
+}
+<div class="sub_banner">
+    <img src="@Url.Content("~/images/sub_banner2.png")" alt="" />
+</div>
+<div class="clearfix"></div>
+<div class="ins-navbox wrap">
+    <div class="inner">
+        <ul>
+            <li><a href="@Url.Content("~/V5TechnologyPlatform/Index")" @if (TempData["urltopsyp"] != null && TempData["urltopsyp"].Equals("urltopv5tpp")) { @Html.Raw("class=\"hover\"") }>V5技术平台</a></li>
+            <li><a href="@Url.Content("~/V5TypicalCase/Index")"@if (TempData["urltopsyp"] != null && TempData["urltopsyp"].Equals("urltopv5tcp")) { @Html.Raw("class=\"hover\"") }>典型案例</a></li>
+        </ul>
+    </div>
+</div>
+@section scritps{
+    
+    
+    
+    }

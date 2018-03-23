@@ -1,0 +1,19 @@
+﻿@model EohiSHM.AutoWeb.ViewModels.HomeModels
+@{
+    ViewBag.Title = "典型案例详情";
+    Layout = "~/Views/Shared/_LoyoutProductService.cshtml";
+}
+
+<div class="inner">
+    <div class="about about_team">
+        <h1>@Model.NewsDetails.Title 案例详情</h1>
+        <div class="v5 clearfix">
+                        @Html.Raw(Model.NewsDetails.Txt)
+        </div>
+    </div>
+</div>
+@section scripts{
+    <script>
+
+    </script>
+}
